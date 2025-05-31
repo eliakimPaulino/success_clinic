@@ -1,0 +1,16 @@
+tirzepatide: aplicações únicas, semanais. Primeiras duas semanas: aplicação de 10 unidades. Semanas 
+seguintes são 20 unidades até o final da anpola.
+
+Na parte da aplicação, habilitar video que mostra a aplicação.
+
+=====================
+Validar erros de JSON.
+
+Fazer cache dos dados.
+
+Carregar de uma API real futuramente.
+
+Usar internacionalização com .arb (i18n).
+
+Adicionar botão de “ver mais” com expansão.
+=====================
