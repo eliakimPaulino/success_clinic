@@ -1,16 +1,22 @@
-# clinica_exito
+# 💼 Success Clinic
 
-A new Flutter project.
+Success Clinic é um aplicativo desenvolvido com Flutter para gerenciamento de atendimentos clínicos, focando na organização de pacientes, agendamentos e usuários.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 Tecnologias Utilizadas
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter
+- Dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📁 Estrutura do Projeto
+
+```bash
+lib/
+├── core/               # Configurações centrais do app (AppConfig, temas, etc)
+├── models/             # Modelos de dados (User, Appointment, etc)
+├── screens/            # Telas da aplicação (Login, Home, Dashboard, etc)
+├── services/           # Serviços como autenticação e API
+├── widgets/            # Componentes reutilizáveis

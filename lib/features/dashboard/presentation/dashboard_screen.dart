@@ -49,13 +49,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text("Bem-vindo(a)")),
+      appBar: AppBar(title: Row(
+        spacing: 10,
+        children: [
+          CircleAvatar(
+            radius: 20,
+            backgroundImage: AssetImage('assets/dr_willian_rangel.png'),
+          ),
+          Text("Seja Bem-vindo(a)!"),
+        ],
+      )),
       body: ValueListenableBuilder(
         valueListenable: _medicationBox.listenable(),
         builder: (context, Box<Medication> box, __) {
           final remedios = box.values.toList();
           final mediaQuery = MediaQuery.of(context);
-          final alturaCabecalho = mediaQuery.size.height * 0.25;
+          final alturaCabecalho = mediaQuery.size.height * 0.20;
 
           return Column(
             children: [

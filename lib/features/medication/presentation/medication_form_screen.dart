@@ -24,7 +24,7 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Medicação cadastrada com sucesso!")),
       );
-      Navigator.pop(context); // Volta para tela principal
+      Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(
         context,
@@ -61,7 +61,7 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
                   setState(() {
                     _selectedMedicationName = val;
                     _nameController.text =
-                        val!; // Atualiza o controller também, se necessário
+                        val!; // Atualiza o campo de nome com a seleção
                   });
                 },
                 decoration: InputDecoration(labelText: 'Nome da Medicação'),
