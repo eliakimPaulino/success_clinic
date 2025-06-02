@@ -1,12 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
-// import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/medication_model.dart';
 import 'package:clinica_exito/features/medication/data/medications_details_list.dart';
-import 'package:clinica_exito/features/medication/presentation/medication_info_presentation.dart';
-// import 'package:clinica_exito/features/medication/presentation/widgets/medication_card.dart';
-// import 'package:clinica_exito/features/repositories/medication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -171,12 +167,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       medInfoMap,
                                     );
 
-                                    Navigator.push(
+                                    Navigator.pushNamed(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (_) =>
-                                            MedicationInfoScreen(info: medInfo),
-                                      ),
+                                      '/medication-info',
+                                      arguments: medInfo,
                                     );
                                   },
                                   child: Card(

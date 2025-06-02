@@ -23,8 +23,8 @@ class ClinicaExitoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Clínica Êxito',
       theme: AppTheme.lightTheme,
+      onGenerateRoute: AppRoutes.onGenerateRoute,
       initialRoute: '/',
-      routes: AppRoutes.routes,
     );
   }
 }
