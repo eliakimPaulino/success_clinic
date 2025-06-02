@@ -1,6 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
+// import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/medication_model.dart';
+import 'package:clinica_exito/features/medication/data/medications_details_list.dart';
+import 'package:clinica_exito/features/medication/presentation/medication_info_presentation.dart';
 // import 'package:clinica_exito/features/medication/presentation/widgets/medication_card.dart';
 // import 'package:clinica_exito/features/repositories/medication_repository.dart';
 import 'package:flutter/material.dart';
@@ -49,16 +52,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Row(
-        spacing: 10,
-        children: [
-          CircleAvatar(
-            radius: 20,
-            backgroundImage: AssetImage('assets/dr_willian_rangel.png'),
-          ),
-          Text("Seja Bem-vindo(a)!"),
-        ],
-      )),
+      appBar: AppBar(
+        title: Row(
+          spacing: 10,
+          children: [
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/dr_willian_rangel.png'),
+            ),
+            Text("Seja Bem-vindo(a)!"),
+          ],
+        ),
+      ),
       body: ValueListenableBuilder(
         valueListenable: _medicationBox.listenable(),
         builder: (context, Box<Medication> box, __) {
@@ -139,32 +144,67 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           final med = box.getAt(index);
                           return med == null
                               ? SizedBox.shrink() // Evita erro se o item for nulo
-                              : Card(
-                                  margin: EdgeInsets.all(8),
-                                  child: ListTile(
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.blue.shade100,
-                                      child: Text(
-                                        med.nome[0].toUpperCase(),
-                                        style: TextStyle(color: Colors.blue),
-                                      ),
-                                    ),
-                                    trailing: IconButton(
-                                      onPressed: () => delete(med),
-                                      color: Colors.blue,
-                                      icon: Icon(Icons.delete),
-                                    ),
-                                    title: Text(med.nome),
-                                    subtitle: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text("Dosagem: ${med.dosagem}"),
-                                        Text(
-                                          "Data: ${med.data.day}/${med.data.month}/${med.data.year}",
+                              : GestureDetector(
+                                  onDoubleTap: () {
+                                    final medInfoMap = medicationDetailsList
+                                        .firstWhere(
+                                          (element) => element['title']!
+                                              .toLowerCase()
+                                              .contains(med.nome.toLowerCase()),
+                                          orElse: () => {},
+                                        );
+
+                                    if (medInfoMap.isEmpty) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Detalhes da medicação não encontrados',
+                                          ),
                                         ),
-                                        Text("Intervalo: ${med.intervalo}"),
-                                      ],
+                                      );
+                                      return;
+                                    }
+                                    final medInfo = MedicationInfo.fromJson(
+                                      medInfoMap,
+                                    );
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            MedicationInfoScreen(info: medInfo),
+                                      ),
+                                    );
+                                  },
+                                  child: Card(
+                                    margin: EdgeInsets.all(8),
+                                    child: ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundColor: Colors.blue.shade100,
+                                        child: Text(
+                                          med.nome[0].toUpperCase(),
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      ),
+                                      trailing: IconButton(
+                                        onPressed: () => delete(med),
+                                        color: Colors.blue,
+                                        icon: Icon(Icons.delete),
+                                      ),
+                                      title: Text(med.nome),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text("Dosagem: ${med.dosagem}"),
+                                          Text(
+                                            "Data: ${med.data.day}/${med.data.month}/${med.data.year}",
+                                          ),
+                                          Text("Intervalo: ${med.intervalo}"),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );

@@ -1,4 +1,4 @@
-[
+final List<Map<String, String>> medicationDetailsList = [
   {
     "imagePath": "assets/tirzepatide.png",
     "title": "Como tomar a tirzepatida",
@@ -19,4 +19,4 @@
     "precautions": "• Pode causar desconforto gastrointestinal no início.\n• Nunca tome dose dobrada.\n• Armazene em local seco, ao abrigo da luz.",
     "helpText": "Em caso de efeitos adversos, procure o médico."
   }
-]
+];
