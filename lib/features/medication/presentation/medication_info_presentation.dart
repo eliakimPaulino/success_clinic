@@ -1,4 +1,4 @@
-import 'package:clinica_exito/core/constants/medication_data.dart';
+import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:flutter/material.dart';
 
 class MedicationInfoScreen extends StatelessWidget {

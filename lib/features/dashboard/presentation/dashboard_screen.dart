@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 // import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
+import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/medication_model.dart';
 import 'package:clinica_exito/features/medication/data/medications_details_list.dart';
 import 'package:clinica_exito/features/medication/presentation/medication_info_presentation.dart';
