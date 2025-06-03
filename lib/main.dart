@@ -22,7 +22,11 @@ class ClinicaExitoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Clínica Êxito',
-      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF0D1025),
+        textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Sans'),
+      ),
       onGenerateRoute: AppRoutes.onGenerateRoute,
       initialRoute: '/',
     );

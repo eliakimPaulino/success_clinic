@@ -1,5 +1,6 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unused_element
 
+import 'package:clinica_exito/features/dashboard/presentation/widgets/medication_tile.dart';
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/medication_model.dart';
 import 'package:clinica_exito/features/medication/data/medications_details_list.dart';
@@ -14,7 +15,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  // final repo = RemedioRepository();
   late Box<Medication> _medicationBox;
 
   @override
@@ -25,7 +25,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final box = Hive.box<Medication>('remedios');
+    // Função para deletar uma medicação
+    // Utiliza a chave do objeto para deletar corretamente
     void delete(Medication medication) async {
       var box = Hive.box<Medication>('remedios');
 
@@ -50,15 +51,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          spacing: 10,
-          children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage('assets/dr_willian_rangel.png'),
-            ),
-            Text("Seja Bem-vindo(a)!"),
-          ],
+        title: Text(
+          "Seja Bem-vindo(a)!",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
       body: ValueListenableBuilder(
@@ -69,6 +64,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           final alturaCabecalho = mediaQuery.size.height * 0.20;
 
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 📌 Cabeçalho no topo ocupando 30% da altura
               Container(
@@ -76,7 +72,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
+                  color: Color(0xFF1A1C3B),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24),
                     bottomRight: Radius.circular(24),
@@ -93,13 +89,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   children: [
                     // Foto circular
                     CircleAvatar(
-                      radius: 40,
+                      radius: 60,
                       backgroundImage: NetworkImage(
-                        'https://i.pravatar.cc/150?img=3', // Substitua pela imagem real
+                        'https://i.pravatar.cc/150?img=3',
                       ),
                     ),
                     SizedBox(width: 16),
-                    // Informações
+                    // Informações do paciente
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,20 +104,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Text(
                             'João da Silva',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(height: 4),
-                          Text('Idade: 35  •  Sexo: Masculino'),
+                          Text('35  •  Masculino'),
                           SizedBox(height: 4),
                           Text(
                             'Clínica Êxito',
-                            style: TextStyle(color: Colors.grey[700]),
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white70,
+                            ),
                           ),
                           Text(
                             'Saúde e Bem-estar',
-                            style: TextStyle(color: Colors.grey[700]),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white54,
+                            ),
                           ),
                         ],
                       ),
@@ -129,7 +131,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ],
                 ),
               ),
-
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8),
+                child: Text(
+                  'Medicações',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
               // 📋 Lista de medicamentos
               Expanded(
                 child: remedios.isEmpty
@@ -173,32 +181,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       arguments: medInfo,
                                     );
                                   },
-                                  child: Card(
-                                    margin: EdgeInsets.all(8),
-                                    child: ListTile(
-                                      leading: CircleAvatar(
-                                        backgroundColor: Colors.blue.shade100,
-                                        child: Text(
-                                          med.nome[0].toUpperCase(),
-                                          style: TextStyle(color: Colors.blue),
-                                        ),
-                                      ),
-                                      trailing: IconButton(
-                                        onPressed: () => delete(med),
-                                        color: Colors.blue,
-                                        icon: Icon(Icons.delete),
-                                      ),
-                                      title: Text(med.nome),
-                                      subtitle: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text("Dosagem: ${med.dosagem}"),
-                                          Text(
-                                            "Data: ${med.data.day}/${med.data.month}/${med.data.year}",
-                                          ),
-                                          Text("Intervalo: ${med.intervalo}"),
-                                        ],
+                                  child: MedicationTile(
+                                    medication: med,
+                                    image: MedicationInfo.fromJson(
+                                      medicationDetailsList.firstWhere(
+                                        (element) => element['title']!
+                                            .toLowerCase()
+                                            .contains(med.nome.toLowerCase()),
+                                        orElse: () => {},
                                       ),
                                     ),
                                   ),
