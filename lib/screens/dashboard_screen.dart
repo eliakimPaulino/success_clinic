@@ -3,8 +3,9 @@
 import 'package:clinica_exito/core/theme/theme_provider.dart';
 import 'package:clinica_exito/features/dashboard/presentation/widgets/medication_tile.dart';
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
-import 'package:clinica_exito/features/medication/data/medication_model.dart';
 import 'package:clinica_exito/features/medication/data/medications_details_list.dart';
+import 'package:clinica_exito/models/medicamento.dart';
+// import 'package:clinica_exito/models/medico.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -17,12 +18,14 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  late Box<Medication> _medicationBox;
+  late Box<Medicamento> _medicationBox;
+  // late Box<Medico> _doctorBox;
 
   @override
   void initState() {
     super.initState();
-    _medicationBox = Hive.box<Medication>('remedios');
+    _medicationBox = Hive.box<Medicamento>('medicamentos');
+    // _doctorBox = Hive.box<Medico>('medicos');
   }
 
   @override
@@ -30,12 +33,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     // Função para deletar uma medicação e utiliza a chave do objeto para deletar corretamente
 
-    void delete(Medication medication) async {
-      var box = Hive.box<Medication>('remedios');
+    void delete(Medicamento medicamento) async {
+      var box = Hive.box<Medicamento>('medicamentos');
 
       // Encontrar a chave do objeto
       final keyToDelete = box.keys.firstWhere(
-        (key) => box.get(key) == medication,
+        (key) => box.get(key) == medicamento,
         orElse: () => null,
       );
 
@@ -54,6 +57,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () => Navigator.pushNamed(context, '/doctors'),
+          tooltip: "Médicos",
+        ),
         title: Text(
           "Bem-vindo!",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -73,7 +81,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       body: ValueListenableBuilder(
         valueListenable: _medicationBox.listenable(),
-        builder: (context, Box<Medication> box, __) {
+        builder: (context, Box<Medicamento> box, __) {
           final remedios = box.values.toList();
           final mediaQuery = MediaQuery.of(context);
           final alturaCabecalho = mediaQuery.size.height * 0.20;

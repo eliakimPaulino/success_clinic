@@ -19,17 +19,23 @@ class MedicamentoAdapter extends TypeAdapter<Medicamento> {
     return Medicamento(
       nome: fields[0] as String,
       dosagem: fields[1] as String,
+      data: fields[2] as DateTime,
+      intervalo: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Medicamento obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.nome)
       ..writeByte(1)
-      ..write(obj.dosagem);
+      ..write(obj.dosagem)
+      ..writeByte(2)
+      ..write(obj.data)
+      ..writeByte(3)
+      ..write(obj.intervalo);
   }
 
   @override

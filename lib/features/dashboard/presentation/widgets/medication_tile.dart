@@ -1,10 +1,10 @@
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
-import 'package:clinica_exito/features/medication/data/medication_model.dart';
+import 'package:clinica_exito/models/medicamento.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MedicationTile extends StatelessWidget {
-  Medication medication;
+  Medicamento medication;
   MedicationInfo image;
 
   MedicationTile({super.key, required this.medication, required this.image});

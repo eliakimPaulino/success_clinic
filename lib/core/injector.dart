@@ -1,3 +1,4 @@
+import 'package:clinica_exito/application/controllers/medico_controller.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 
@@ -17,7 +18,7 @@ Future<void> setupInjector() async {
   );
 
   // Você pode registrar outros da mesma forma:
-  // getIt.registerSingleton<IMedicamentoRepository>(
-  //   HiveMedicamentoRepository(await Hive.openBox<Medicamento>('medicamentos')),
-  // );
+  getIt.registerSingleton<MedicoController>(
+  MedicoController(getIt<IMedicoRepository>()),
+);
 }

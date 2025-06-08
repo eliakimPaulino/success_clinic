@@ -10,15 +10,25 @@ class Medicamento {
   @HiveField(1)
   final String dosagem;
 
+  @HiveField(2)
+  final DateTime data;
+
+  @HiveField(2)
+  final String intervalo;
+
   Medicamento({
     required this.nome,
     required this.dosagem,
+    required this.data,
+    required this.intervalo,
   });
 
   factory Medicamento.fromJson(Map<String, dynamic> json) {
     return Medicamento(
       nome: json['nome'],
       dosagem: json['dosagem'],
+      data: json['data'],
+      intervalo: json['intervalo'],
     );
   }
 
@@ -26,6 +36,8 @@ class Medicamento {
     return {
       'nome': nome,
       'dosagem': dosagem,
+      'data': data,
+      'intervalo': intervalo,
     };
   }
 }

@@ -20,6 +20,10 @@ void main() async {
   Hive.registerAdapter(MedicoAdapter());
   Hive.registerAdapter(MedicamentoAdapter());
 
+  // Abra as boxes necessárias aqui
+  await Hive.openBox<Medico>('medicos');
+  await Hive.openBox<Medicamento>('medicamentos');
+
   // 3. Injeta dependências (setupInjector pode abrir caixas usando Hive)
   await setupInjector();
 

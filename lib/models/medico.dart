@@ -10,15 +10,20 @@ class Medico {
   @HiveField(1)
   final String especialidade;
 
+  @HiveField(2)
+  final String photo;
+
   Medico({
     required this.nome,
     required this.especialidade,
+    required this.photo,
   });
 
   factory Medico.fromJson(Map<String, dynamic> json) {
     return Medico(
       nome: json['nome'],
       especialidade: json['especialidade'],
+      photo: json['photo'] ?? '', // Default to empty string if photo is not provided
     );
   }
 
@@ -26,6 +31,7 @@ class Medico {
     return {
       'nome': nome,
       'especialidade': especialidade,
+      'photo': photo,
     };
   }
 }

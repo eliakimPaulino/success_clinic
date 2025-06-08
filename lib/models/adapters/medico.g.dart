@@ -19,17 +19,20 @@ class MedicoAdapter extends TypeAdapter<Medico> {
     return Medico(
       nome: fields[0] as String,
       especialidade: fields[1] as String,
+      photo: fields[2] as String? ?? '', // Default to empty string if photo is not provided
     );
   }
 
   @override
   void write(BinaryWriter writer, Medico obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.nome)
       ..writeByte(1)
-      ..write(obj.especialidade);
+      ..write(obj.especialidade)
+      ..writeByte(2)
+      ..write(obj.photo);
   }
 
   @override

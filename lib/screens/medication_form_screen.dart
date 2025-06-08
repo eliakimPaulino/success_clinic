@@ -1,4 +1,4 @@
-import 'package:clinica_exito/features/medication/data/medication_model.dart';
+import 'package:clinica_exito/models/medicamento.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -6,22 +6,22 @@ class MedicationFormScreen extends StatefulWidget {
   const MedicationFormScreen({super.key});
 
   @override
-  State<MedicationFormScreen> createState() => _MedicationFormScreenState();
+  State<MedicationFormScreen> createState() => _MedicamentoFormScreenState();
 }
 
-class _MedicationFormScreenState extends State<MedicationFormScreen> {
+class _MedicamentoFormScreenState extends State<MedicationFormScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _dosageController = TextEditingController();
   DateTime? _startDate;
   String _interval = '7 dias';
-  String? _selectedMedicationName;
-  String? _selectedMedicationDose;
+  String? _selectedMedicamentoName;
+  String? _selectedMedicamentoDose;
 
-  void _submit(Medication medication) async {
+  void _submit(Medicamento medicamento) async {
     if (_formKey.currentState!.validate() && _startDate != null) {
-      var box = Hive.box<Medication>('remedios');
-      await box.add(medication);
+      var box = Hive.box<Medicamento>('medicamentos');
+      await box.add(medicamento);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Medicação cadastrada com sucesso!")),
       );
@@ -54,13 +54,13 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
           child: ListView(
             children: [
               DropdownButtonFormField<String>(
-                value: _selectedMedicationName,
+                value: _selectedMedicamentoName,
                 items: ['Tirzepatida', 'Semaglutida']
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
                 onChanged: (val) {
                   setState(() {
-                    _selectedMedicationName = val;
+                    _selectedMedicamentoName = val;
                     _nameController.text =
                         val!; // Atualiza o campo de nome com a seleção
                   });
@@ -68,13 +68,13 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
                 decoration: InputDecoration(labelText: 'Nome da Medicação'),
               ),
               DropdownButtonFormField<String>(
-                value: _selectedMedicationDose,
+                value: _selectedMedicamentoDose,
                 items: ['10 Doses', '20 Doses']
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
                 onChanged: (val) {
                   setState(() {
-                    _selectedMedicationDose = val;
+                    _selectedMedicamentoDose = val;
                   });
                 },
                 decoration: InputDecoration(labelText: 'Quantidade de Doses'),
@@ -101,7 +101,7 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () => _submit(
-                  Medication(
+                  Medicamento(
                     nome: _nameController.text,
                     dosagem: _dosageController.text,
                     data: _startDate!,
