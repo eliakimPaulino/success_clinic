@@ -7,11 +7,7 @@ class MedicationTile extends StatelessWidget {
   Medication medication;
   MedicationInfo image;
 
-  MedicationTile({
-    super.key,
-    required this.medication,
-    required this.image,
-  });
+  MedicationTile({super.key, required this.medication, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +20,20 @@ class MedicationTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Primeira aplicação: ${medication.data.day.toString().padLeft(2, '0')}/${medication.data.month.toString().padLeft(2, '0')}/${medication.data.year}',
-                  style: const TextStyle(fontSize: 14),
-                ),
-                Text(
                   medication.nome,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
+                  'Aplicação em: ${medication.data.day.toString().padLeft(2, '0')}/${medication.data.month.toString().padLeft(2, '0')}/${medication.data.year}',
+                  style: const TextStyle(fontSize: 14),
+                ),
+
+                Text(
                   '${medication.dosagem} doses',
-                  style: const TextStyle(fontSize: 14,),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ],
             ),

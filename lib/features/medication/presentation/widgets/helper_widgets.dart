@@ -60,11 +60,9 @@ class _VideoPreviewTileState extends State<VideoPreviewTile> {
     );
   }
 
-  // Future<void> _openVideoExternally(String videoId) async {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => _openVideoExternally(info.videoId),
       onTap: () => _openVideo(context),
       child: Row(
         children: [

@@ -28,8 +28,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    // Função para deletar uma medicação
-    // Utiliza a chave do objeto para deletar corretamente
+    // Função para deletar uma medicação e utiliza a chave do objeto para deletar corretamente
+
     void delete(Medication medication) async {
       var box = Hive.box<Medication>('remedios');
 
@@ -44,7 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Medicação removida com sucesso")),
         );
-        setState(() {}); // Atualiza a UI, se necessário
+        setState(() {});
       } else {
         ScaffoldMessenger.of(
           context,
@@ -55,7 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Seja Bem-vindo(a)!",
+          "Bem-vindo!",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -87,17 +87,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
+                  color: themeProvider.isDarkMode ? null : Colors.indigo,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24),
                     bottomRight: Radius.circular(24),
                   ),
-                  // boxShadow: [
-                  //   BoxShadow(
-                  //     color: Colors.black12,
-                  //     blurRadius: 6,
-                  //     offset: Offset(0, 2),
-                  //   ),
-                  // ],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 6,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
                 ),
                 child: Row(
                   children: [
@@ -105,7 +106,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     CircleAvatar(
                       radius: 60,
                       backgroundImage: NetworkImage(
-                        'https://i.pravatar.cc/150?img=3',
+                        'https://i.pravatar.cc/150?img=58',
                       ),
                     ),
                     SizedBox(width: 30),
@@ -118,17 +119,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Text(
                             'João da Silva',
                             style: TextStyle(
+                              color: Colors.white,
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(height: 4),
-                          Text('35  •  Masculino'),
+                          Text(
+                            '35  •  Masculino',
+                            style: TextStyle(color: Colors.white),
+                          ),
                           SizedBox(height: 4),
-                          Text('Clínica Êxito', style: TextStyle(fontSize: 16)),
+                          Text(
+                            'Clínica Êxito',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
                           Text(
                             'Saúde e Bem-estar',
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         ],
                       ),

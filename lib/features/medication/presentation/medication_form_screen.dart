@@ -16,6 +16,7 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
   DateTime? _startDate;
   String _interval = '7 dias';
   String? _selectedMedicationName;
+  String? _selectedMedicationDose;
 
   void _submit(Medication medication) async {
     if (_formKey.currentState!.validate() && _startDate != null) {
@@ -37,7 +38,7 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2020),
-      lastDate: DateTime(2030),
+      lastDate: DateTime.now(),
     );
     if (picked != null) setState(() => _startDate = picked);
   }
@@ -54,7 +55,7 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
             children: [
               DropdownButtonFormField<String>(
                 value: _selectedMedicationName,
-                items: ['Tirzepatida', 'Metformina', 'Semaglutida']
+                items: ['Tirzepatida', 'Semaglutida']
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
                 onChanged: (val) {
@@ -66,11 +67,17 @@ class _MedicationFormScreenState extends State<MedicationFormScreen> {
                 },
                 decoration: InputDecoration(labelText: 'Nome da Medicação'),
               ),
-              TextFormField(
-                controller: _dosageController,
-                decoration: InputDecoration(labelText: 'Dosagem'),
-                validator: (value) =>
-                    value!.isEmpty ? 'Campo obrigatório' : null,
+              DropdownButtonFormField<String>(
+                value: _selectedMedicationDose,
+                items: ['10 Doses', '20 Doses']
+                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                    .toList(),
+                onChanged: (val) {
+                  setState(() {
+                    _selectedMedicationDose = val;
+                  });
+                },
+                decoration: InputDecoration(labelText: 'Quantidade de Doses'),
               ),
               ListTile(
                 title: Text(

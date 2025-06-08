@@ -35,7 +35,7 @@ class ClinicaExitoApp extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       onGenerateRoute: AppRoutes.onGenerateRoute,
-      initialRoute: '/',
+      initialRoute: '/dashboard',
     );
   }
 }

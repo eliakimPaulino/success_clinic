@@ -1,10 +1,7 @@
-import 'package:clinica_exito/core/theme/app_theme.dart';
-import 'package:clinica_exito/core/theme/theme_provider.dart';
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/video_info.dart';
 import 'package:clinica_exito/features/medication/presentation/widgets/helper_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MedicationInfoScreen extends StatefulWidget {
   final MedicationInfo info;
@@ -18,7 +15,6 @@ class MedicationInfoScreen extends StatefulWidget {
 class _MedicationInfoScreenState extends State<MedicationInfoScreen> {
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: FutureBuilder<VideoInfo>(
         future: fetchVideoInfo(
@@ -38,10 +34,17 @@ class _MedicationInfoScreenState extends State<MedicationInfoScreen> {
                   Stack(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.30,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 6,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(30),
@@ -53,7 +56,7 @@ class _MedicationInfoScreenState extends State<MedicationInfoScreen> {
                       ),
                       // Gradiente para escurecer o topo
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.3,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
@@ -170,10 +173,7 @@ class InfoSection extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           const SizedBox(height: 4),
-          Text(
-            content,
-            style: const TextStyle(fontSize: 14),
-          ),
+          Text(content, style: const TextStyle(fontSize: 14)),
         ],
       ),
     );
