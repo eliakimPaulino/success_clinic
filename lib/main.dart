@@ -1,6 +1,8 @@
+import 'package:clinica_exito/core/injector.dart';
 import 'package:clinica_exito/core/theme/app_theme.dart';
 import 'package:clinica_exito/core/theme/theme_provider.dart';
-import 'package:clinica_exito/features/medication/data/medication_model.dart';
+import 'package:clinica_exito/models/medicamento.dart';
+import 'package:clinica_exito/models/medico.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -8,16 +10,24 @@ import 'package:provider/provider.dart';
 import 'routes/app_routes.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+    WidgetsFlutterBinding.ensureInitialized();
 
+  // 1. Inicializa o diretório do Hive
   final appDocumentDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDir.path);
-  Hive.registerAdapter(MedicationAdapter());
-  await Hive.openBox<Medication>('remedios');
+
+  // 2. Registra todos os adapters ANTES de abrir caixas ou injetar dependências
+  Hive.registerAdapter(MedicoAdapter());
+  Hive.registerAdapter(MedicamentoAdapter());
+
+  // 3. Injeta dependências (setupInjector pode abrir caixas usando Hive)
+  await setupInjector();
+
+  // 4. Inicia o app
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
-      child: ClinicaExitoApp(),
+      child: const ClinicaExitoApp(),
     ),
   );
 }
