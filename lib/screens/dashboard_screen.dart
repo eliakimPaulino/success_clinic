@@ -1,11 +1,12 @@
 // ignore_for_file: use_build_context_synchronously, unused_element
 
+import 'package:clinica_exito/application/controllers/medicamento_controller.dart';
+import 'package:clinica_exito/core/injector.dart';
 import 'package:clinica_exito/core/theme/theme_provider.dart';
 import 'package:clinica_exito/features/dashboard/presentation/widgets/medication_tile.dart';
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/medications_details_list.dart';
 import 'package:clinica_exito/models/medicamento.dart';
-// import 'package:clinica_exito/models/medico.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -19,20 +20,19 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   late Box<Medicamento> _medicationBox;
-  // late Box<Medico> _doctorBox;
+  final _controller = getIt<MedicamentoController>();
 
   @override
   void initState() {
     super.initState();
     _medicationBox = Hive.box<Medicamento>('medicamentos');
-    // _doctorBox = Hive.box<Medico>('medicos');
   }
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    // Função para deletar uma medicação e utiliza a chave do objeto para deletar corretamente
 
+    // Função para deletar uma medicação e utiliza a chave do objeto para deletar corretamente
     void delete(Medicamento medicamento) async {
       var box = Hive.box<Medicamento>('medicamentos');
 
@@ -163,60 +163,124 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Expanded(
                 child: remedios.isEmpty
                     ? Center(child: Text('Nenhum remédio cadastrado.'))
-                    : ListView.builder(
-                        padding: EdgeInsets.all(16),
-                        itemCount: box.length,
-                        itemBuilder: (_, index) {
-                          final med = box.getAt(index);
-                          return med == null
-                              ? SizedBox.shrink() // Evita erro se o item for nulo
-                              : GestureDetector(
-                                  onLongPress: () => delete(med),
-                                  onDoubleTap: () {
-                                    final medInfoMap = medicationDetailsList
-                                        .firstWhere(
-                                          (element) => element['title']!
-                                              .toLowerCase()
-                                              .contains(med.nome.toLowerCase()),
-                                          orElse: () => {},
-                                        );
-
-                                    if (medInfoMap.isEmpty) {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Detalhes da medicação não encontrados',
-                                          ),
-                                        ),
-                                      );
-                                      return;
-                                    }
-                                    final medInfo = MedicationInfo.fromJson(
-                                      medInfoMap,
-                                    );
-
-                                    Navigator.pushNamed(
-                                      context,
-                                      '/medication-info',
-                                      arguments: medInfo,
-                                    );
-                                  },
-                                  child: MedicationTile(
-                                    medication: med,
-                                    image: MedicationInfo.fromJson(
-                                      medicationDetailsList.firstWhere(
+                    : FutureBuilder(
+                        future: _controller.carregarMedicamento(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const CircularProgressIndicator();
+                          }
+                          return ListView.builder(
+                            itemCount: _controller.medicamentos.length,
+                            itemBuilder: (context, index) {
+                              final medicamento =
+                                  _controller.medicamentos[index];
+                              return GestureDetector(
+                                onLongPress: () => delete(medicamento),
+                                onDoubleTap: () {
+                                  final medInfoMap = medicationDetailsList
+                                      .firstWhere(
                                         (element) => element['title']!
                                             .toLowerCase()
-                                            .contains(med.nome.toLowerCase()),
+                                            .contains(
+                                              medicamento.nome.toLowerCase(),
+                                            ),
                                         orElse: () => {},
+                                      );
+
+                                  if (medInfoMap.isEmpty) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Detalhes da medicação não encontrados',
+                                        ),
                                       ),
+                                    );
+                                    return;
+                                  }
+                                  final medInfo = MedicationInfo.fromJson(
+                                    medInfoMap,
+                                  );
+
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/medication-info',
+                                    arguments: medInfo,
+                                  );
+                                },
+                                child: MedicationTile(
+                                  medication: medicamento,
+                                  image: MedicationInfo.fromJson(
+                                    medicationDetailsList.firstWhere(
+                                      (element) => element['title']!
+                                          .toLowerCase()
+                                          .contains(
+                                            medicamento.nome.toLowerCase(),
+                                          ),
+                                      orElse: () => {},
                                     ),
                                   ),
-                                );
+                                ),
+                              );
+                            },
+                          );
                         },
                       ),
+
+                // ListView.builder(
+                //     padding: EdgeInsets.all(16),
+                //     itemCount: box.length,
+                //     itemBuilder: (_, index) {
+                //       final med = box.getAt(index);
+                //       return med == null
+                //           ? SizedBox.shrink() // Evita erro se o item for nulo
+                //           : GestureDetector(
+                //               onLongPress: () => delete(med),
+                //               onDoubleTap: () {
+                //                 final medInfoMap = medicationDetailsList
+                //                     .firstWhere(
+                //                       (element) => element['title']!
+                //                           .toLowerCase()
+                //                           .contains(med.nome.toLowerCase()),
+                //                       orElse: () => {},
+                //                     );
+
+                //                 if (medInfoMap.isEmpty) {
+                //                   ScaffoldMessenger.of(
+                //                     context,
+                //                   ).showSnackBar(
+                //                     SnackBar(
+                //                       content: Text(
+                //                         'Detalhes da medicação não encontrados',
+                //                       ),
+                //                     ),
+                //                   );
+                //                   return;
+                //                 }
+                //                 final medInfo = MedicationInfo.fromJson(
+                //                   medInfoMap,
+                //                 );
+
+                //                 Navigator.pushNamed(
+                //                   context,
+                //                   '/medication-info',
+                //                   arguments: medInfo,
+                //                 );
+                //               },
+                //               child: MedicationTile(
+                //                 medication: med,
+                //                 image: MedicationInfo.fromJson(
+                //                   medicationDetailsList.firstWhere(
+                //                     (element) => element['title']!
+                //                         .toLowerCase()
+                //                         .contains(med.nome.toLowerCase()),
+                //                     orElse: () => {},
+                //                   ),
+                //                 ),
+                //               ),
+                //             );
+                //     },
+                //   ),
               ),
             ],
           );

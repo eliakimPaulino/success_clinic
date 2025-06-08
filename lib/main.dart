@@ -43,13 +43,13 @@ class ClinicaExitoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-      title: 'Clínica Êxito',
+      title: 'Success Clinic',
       debugShowCheckedModeBanner: false,
       themeMode: themeProvider.themeMode,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       onGenerateRoute: AppRoutes.onGenerateRoute,
-      initialRoute: '/dashboard',
+      initialRoute: '/',
     );
   }
 }

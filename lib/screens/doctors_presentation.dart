@@ -8,13 +8,6 @@ class DoctorsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Função para gerar uma URL com número aleatório entre 1 e 99
-    // String gerarAvatarAleatorio() {
-    //   final random = Random();
-    //   int numero = random.nextInt(89) + 1; // Gera número entre 1 e 99
-    //   return 'https://i.pravatar.cc/150?img=$numero';
-    // }
-
     final doutores = [
       Medico(
         nome: 'William Rangel',
@@ -49,14 +42,9 @@ class DoctorsPage extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           "Médicos",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add, color: Colors.black87),
-            onPressed: () {},
-          ),
-        ],
+        actions: [IconButton(icon: const Icon(Icons.add), onPressed: () {})],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -79,7 +67,7 @@ class DoctorsPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              "Pacientes",
+              "Doutores",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
