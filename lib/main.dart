@@ -1,9 +1,11 @@
+import 'package:clinica_exito/core/theme/app_theme.dart';
+import 'package:clinica_exito/core/theme/theme_provider.dart';
 import 'package:clinica_exito/features/medication/data/medication_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'routes/app_routes.dart';
-import 'core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +14,12 @@ void main() async {
   Hive.init(appDocumentDir.path);
   Hive.registerAdapter(MedicationAdapter());
   await Hive.openBox<Medication>('remedios');
-  runApp(ClinicaExitoApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: ClinicaExitoApp(),
+    ),
+  );
 }
 
 class ClinicaExitoApp extends StatelessWidget {
@@ -20,13 +27,13 @@ class ClinicaExitoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       title: 'Clínica Êxito',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF0D1025),
-        textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Sans'),
-      ),
+      themeMode: themeProvider.themeMode,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
       onGenerateRoute: AppRoutes.onGenerateRoute,
       initialRoute: '/',
     );

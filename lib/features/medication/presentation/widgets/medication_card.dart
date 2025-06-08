@@ -31,7 +31,7 @@ class MedicationCard extends StatelessWidget {
               children: [
                 const Row(
               children: [
-                Icon(Icons.info_outline, color: Colors.blue),
+                Icon(Icons.info_outline),
                 SizedBox(width: 8),
                 Text(
                   'Como tomar a tirzepatida',

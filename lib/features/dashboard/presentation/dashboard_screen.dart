@@ -1,11 +1,13 @@
 // ignore_for_file: use_build_context_synchronously, unused_element
 
+import 'package:clinica_exito/core/theme/theme_provider.dart';
 import 'package:clinica_exito/features/dashboard/presentation/widgets/medication_tile.dart';
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
 import 'package:clinica_exito/features/medication/data/medication_model.dart';
 import 'package:clinica_exito/features/medication/data/medications_details_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -25,6 +27,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     // Função para deletar uma medicação
     // Utiliza a chave do objeto para deletar corretamente
     void delete(Medication medication) async {
@@ -55,6 +58,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
           "Seja Bem-vindo(a)!",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              themeProvider.isDarkMode
+                  ? Icons.wb_sunny
+                  : Icons.nightlight_round,
+            ),
+            onPressed: () {
+              themeProvider.toggleTheme(!themeProvider.isDarkMode);
+            },
+          ),
+        ],
       ),
       body: ValueListenableBuilder(
         valueListenable: _medicationBox.listenable(),
@@ -72,18 +87,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Color(0xFF1A1C3B),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24),
                     bottomRight: Radius.circular(24),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 6,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black12,
+                  //     blurRadius: 6,
+                  //     offset: Offset(0, 2),
+                  //   ),
+                  // ],
                 ),
                 child: Row(
                   children: [
@@ -94,7 +108,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         'https://i.pravatar.cc/150?img=3',
                       ),
                     ),
-                    SizedBox(width: 16),
+                    SizedBox(width: 30),
                     // Informações do paciente
                     Expanded(
                       child: Column(
@@ -111,19 +125,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           SizedBox(height: 4),
                           Text('35  •  Masculino'),
                           SizedBox(height: 4),
-                          Text(
-                            'Clínica Êxito',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white70,
-                            ),
-                          ),
+                          Text('Clínica Êxito', style: TextStyle(fontSize: 16)),
                           Text(
                             'Saúde e Bem-estar',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white54,
-                            ),
+                            style: TextStyle(fontSize: 14),
                           ),
                         ],
                       ),
@@ -150,6 +155,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           return med == null
                               ? SizedBox.shrink() // Evita erro se o item for nulo
                               : GestureDetector(
+                                  onLongPress: () => delete(med),
                                   onDoubleTap: () {
                                     final medInfoMap = medicationDetailsList
                                         .firstWhere(

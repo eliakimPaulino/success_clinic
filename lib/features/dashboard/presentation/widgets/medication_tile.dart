@@ -25,7 +25,7 @@ class MedicationTile extends StatelessWidget {
               children: [
                 Text(
                   'Primeira aplicação: ${medication.data.day.toString().padLeft(2, '0')}/${medication.data.month.toString().padLeft(2, '0')}/${medication.data.year}',
-                  style: const TextStyle(fontSize: 14, color: Colors.white54),
+                  style: const TextStyle(fontSize: 14),
                 ),
                 Text(
                   medication.nome,
@@ -36,7 +36,7 @@ class MedicationTile extends StatelessWidget {
                 ),
                 Text(
                   '${medication.dosagem} doses',
-                  style: const TextStyle(fontSize: 14, color: Colors.white70),
+                  style: const TextStyle(fontSize: 14,),
                 ),
               ],
             ),
