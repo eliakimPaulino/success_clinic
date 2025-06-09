@@ -79,7 +79,7 @@ class DoctorsPage extends StatelessWidget {
                   return ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: CircleAvatar(
-                      backgroundImage: AssetImage(doutor.photo),
+                      backgroundImage: AssetImage(doutor.photo!),
                     ),
                     title: Text(doutor.nome),
                     subtitle: Text(

@@ -11,12 +11,12 @@ class Medico {
   final String especialidade;
 
   @HiveField(2)
-  final String photo;
+  final String? photo;
 
   Medico({
     required this.nome,
     required this.especialidade,
-    required this.photo,
+    this.photo,
   });
 
   factory Medico.fromJson(Map<String, dynamic> json) {

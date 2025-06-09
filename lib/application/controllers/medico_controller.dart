@@ -1,7 +1,6 @@
 import 'package:clinica_exito/domain/usecases/cadastrar_medico.dart';
 import 'package:clinica_exito/domain/usecases/listar_medico.dart';
 import 'package:flutter/material.dart';
-import '../../domain/repositories/i_medico_repository.dart';
 import '../../domain/usecases/remover_medico.dart';
 import '../../models/medico.dart';
 
