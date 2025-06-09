@@ -8,23 +8,23 @@ import 'package:flutter/material.dart';
 class MedicamentoController extends ChangeNotifier {
   final IMedicamentoRepository repository;
 
-  List<Medicamento> _medmedicamentos = [];
-  List<Medicamento> get medicamentos => _medmedicamentos;
+  List<Medicamento> _medicamentos = [];
+  List<Medicamento> get medicamentos => _medicamentos;
 
   MedicamentoController(this.repository);
 
-  Future<void> carregarMedicamento() async {
-    _medmedicamentos = await repository.buscarTodos();
+  Future<void> carregarMedicamentos() async {
+    _medicamentos = await repository.buscarTodos();
     notifyListeners();
   }
 
   Future<void> adicionar(Medicamento medicamento) async {
     await repository.adicionar(medicamento);
-    await carregarMedicamento();
+    await carregarMedicamentos();
   }
 
   Future<void> remover(Medicamento medicamento) async {
     await repository.remover(medicamento);
-    await carregarMedicamento();
+    await carregarMedicamentos();
   }
 }

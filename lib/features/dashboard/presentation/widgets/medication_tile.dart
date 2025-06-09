@@ -12,7 +12,7 @@ class MedicationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
         children: [
           Expanded(
@@ -27,7 +27,7 @@ class MedicationTile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Aplicação em: ${medication.data.day.toString().padLeft(2, '0')}/${medication.data.month.toString().padLeft(2, '0')}/${medication.data.year}',
+                  'Aplicado em: ${medication.data.day.toString().padLeft(2, '0')}/${medication.data.month.toString().padLeft(2, '0')}/${medication.data.year}',
                   style: const TextStyle(fontSize: 14),
                 ),
 

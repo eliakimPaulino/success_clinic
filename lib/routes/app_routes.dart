@@ -1,12 +1,12 @@
-import 'package:clinica_exito/screens/doctors_presentation.dart';
+import 'package:clinica_exito/screens/dashboard/presentation/dashboard_screen.dart';
+import 'package:clinica_exito/screens/doctors/presentation/doctors_screen.dart';
 import 'package:clinica_exito/features/medication/data/medication_info_model.dart';
-import 'package:clinica_exito/screens/medication_info_presentation.dart';
+import 'package:clinica_exito/screens/medication_info/presentation/medication_info_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/login_screen.dart';
 import '../features/auth/presentation/register_screen.dart';
-import '../screens/dashboard_screen.dart';
-import '../screens/medication_form_screen.dart';
+import '../screens/medication_form/medication_form_screen.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -20,7 +20,7 @@ class AppRoutes {
       case '/add-medication':
         return MaterialPageRoute(builder: (_) => MedicationFormScreen());
       case '/doctors':
-        return MaterialPageRoute(builder: (_) => DoctorsPage());
+        return MaterialPageRoute(builder: (_) => DoctorsScreen());
       case '/medication-info':
         final args = settings.arguments;
         if (args is MedicationInfo) {
