@@ -226,61 +226,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           );
                         },
                       ),
-
-                // ListView.builder(
-                //     padding: EdgeInsets.all(16),
-                //     itemCount: box.length,
-                //     itemBuilder: (_, index) {
-                //       final med = box.getAt(index);
-                //       return med == null
-                //           ? SizedBox.shrink() // Evita erro se o item for nulo
-                //           : GestureDetector(
-                //               onLongPress: () => delete(med),
-                //               onDoubleTap: () {
-                //                 final medInfoMap = medicationDetailsList
-                //                     .firstWhere(
-                //                       (element) => element['title']!
-                //                           .toLowerCase()
-                //                           .contains(med.nome.toLowerCase()),
-                //                       orElse: () => {},
-                //                     );
-
-                //                 if (medInfoMap.isEmpty) {
-                //                   ScaffoldMessenger.of(
-                //                     context,
-                //                   ).showSnackBar(
-                //                     SnackBar(
-                //                       content: Text(
-                //                         'Detalhes da medicação não encontrados',
-                //                       ),
-                //                     ),
-                //                   );
-                //                   return;
-                //                 }
-                //                 final medInfo = MedicationInfo.fromJson(
-                //                   medInfoMap,
-                //                 );
-
-                //                 Navigator.pushNamed(
-                //                   context,
-                //                   '/medication-info',
-                //                   arguments: medInfo,
-                //                 );
-                //               },
-                //               child: MedicationTile(
-                //                 medication: med,
-                //                 image: MedicationInfo.fromJson(
-                //                   medicationDetailsList.firstWhere(
-                //                     (element) => element['title']!
-                //                         .toLowerCase()
-                //                         .contains(med.nome.toLowerCase()),
-                //                     orElse: () => {},
-                //                   ),
-                //                 ),
-                //               ),
-                //             );
-                //     },
-                //   ),
               ),
             ],
           );
