@@ -7,6 +7,9 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 
 import '../domain/repositories/i_medico_repository.dart';
+import '../domain/usecases/cadastrar_medico.dart';
+import '../domain/usecases/listar_medico.dart';
+import '../domain/usecases/remover_medico.dart';
 import '../infrastructure/repositories/hive_medico_repository.dart';
 import '../models/medico.dart';
 
@@ -19,14 +22,21 @@ Future<void> setupInjector() async {
 
   // Repositórios
   getIt.registerSingleton<IMedicoRepository>(HiveMedicoRepository(medicoBox));
-  getIt.registerSingleton<IMedicamentoRepository>(HiveMedicamentoRepository(medicamentoBox));
-
-  // Pode registrar outros da mesma forma:
-  getIt.registerSingleton<MedicoController>(
-    MedicoController(getIt<IMedicoRepository>()),
+  getIt.registerSingleton<IMedicamentoRepository>(
+    HiveMedicamentoRepository(medicamentoBox),
   );
 
   getIt.registerSingleton<MedicamentoController>(
     MedicamentoController(getIt<IMedicamentoRepository>()),
+  );
+
+  // Registra os UseCases
+  getIt.registerSingleton<ListarMedicos>(ListarMedicos(getIt()));
+  getIt.registerSingleton<CadastrarMedico>(CadastrarMedico(getIt()));
+  getIt.registerSingleton<RemoverMedico>(RemoverMedico(getIt()));
+
+  // Atualiza o Controller
+  getIt.registerSingleton<MedicoController>(
+    MedicoController(listar: getIt(), cadastrar: getIt(), remover: getIt()),
   );
 }
