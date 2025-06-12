@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'routes/app_routes.dart';
+import 'core/routes/app_routes.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
