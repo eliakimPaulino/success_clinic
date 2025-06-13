@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:clinica_exito/presentation/controllers/medication_controller.dart';
 import 'package:clinica_exito/presentation/medication_form/widgets/dosage_dropdown.dart';
 import 'package:clinica_exito/presentation/medication_form/widgets/interval_dropdown.dart';

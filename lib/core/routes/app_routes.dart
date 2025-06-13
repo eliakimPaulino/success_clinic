@@ -1,3 +1,4 @@
+import 'package:clinica_exito/core/di/injection.dart';
 import 'package:clinica_exito/presentation/dashboard/dashboard_screen.dart';
 import 'package:clinica_exito/presentation/doctors/doctors_screen.dart';
 import 'package:clinica_exito/models/medication_info_model.dart';
@@ -12,7 +13,9 @@ class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(
+          builder: (_) => LoginScreen(authController: injectAuthController()),
+        );
       case '/register':
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case '/dashboard':
