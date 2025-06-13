@@ -17,6 +17,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   late Box<Medicamento> _medicationBox;
+  late AuthController _authController;
 
   @override
   void initState() {
@@ -30,7 +31,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     await authController.logout();
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
     print('Logout concluído');
-    //  Navigator.pushReplacementNamed(context, '/');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _authController = Provider.of<AuthController>(context, listen: false);
   }
 
   @override
@@ -47,9 +53,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
             tooltip: "Abrir menu",
           ),
         ),
-        title: const Text(
-          "Bem-vindo!",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        title: FutureBuilder<String?>(
+          future: _authController.getNameUseCase(),
+          builder: (context, snap) {
+            final name = snap.data;
+            final title = (name == null) ? 'Bem vindo!' : 'Bem vindo, $name!';
+            return Text(
+              title,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            );
+          },
         ),
         actions: [
           IconButton(

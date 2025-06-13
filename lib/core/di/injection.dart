@@ -1,3 +1,4 @@
+import 'package:clinica_exito/domain/usecases/login/get_currente_user_name.dart';
 import 'package:clinica_exito/domain/usecases/login/logout_usecase.dart';
 
 import '../../data/datasources/local_auth_datasource.dart';
@@ -16,5 +17,6 @@ AuthController injectAuthController() {
     registerUseCase: RegisterUseCase(repository),
     checkLoginUseCase: CheckLoginUseCase(repository),
     logoutUseCase: LogoutUseCase(repository),
+    getNameUseCase: GetCurrentUserNameUseCase(repository),
   );
 }

@@ -15,6 +15,7 @@ import '../domain/usecases/doctor/listar_medico_usecase.dart';
 import '../domain/usecases/doctor/remover_medico_usecase.dart';
 import '../data/repositories/hive_medico_repository.dart';
 import '../domain/usecases/login/check_login_usecase.dart';
+import '../domain/usecases/login/get_currente_user_name.dart';
 import '../domain/usecases/login/login_usecase.dart';
 import '../domain/usecases/login/logout_usecase.dart';
 import '../domain/usecases/login/register_usecase.dart';
@@ -79,9 +80,14 @@ Future<void> setupInjector() async {
   getIt.registerLazySingleton<AuthController>(
     () => AuthController(
       loginUseCase: getIt<LoginUseCase>(),
+      getNameUseCase: getIt<GetCurrentUserNameUseCase>(),
       registerUseCase: getIt<RegisterUseCase>(),
       checkLoginUseCase: getIt<CheckLoginUseCase>(),
       logoutUseCase: getIt<LogoutUseCase>(),
     ),
+  );
+
+  getIt.registerLazySingleton<GetCurrentUserNameUseCase>(
+    () => GetCurrentUserNameUseCase(getIt<AuthRepository>()),
   );
 }

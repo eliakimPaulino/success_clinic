@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final user = User(
       name: _nameController.text.trim(),
       email: _emailController.text.trim(),
-      password: _passwordController.text,
+      password: _passwordController.text.trim(),
     );
 
     final success = await widget.authController.register(user);
