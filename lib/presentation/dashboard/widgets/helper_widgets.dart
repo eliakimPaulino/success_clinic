@@ -1,10 +1,7 @@
 import 'package:clinica_exito/models/video_info.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
-
-import '../../controllers/auth_controller.dart';
 
 Future<VideoInfo> fetchVideoInfo(String videoUrl) async {
   final yt = YoutubeExplode();
@@ -18,12 +15,6 @@ Future<VideoInfo> fetchVideoInfo(String videoUrl) async {
   yt.close();
   return info;
 }
-
-void _logout(BuildContext context) async {
-    final authController = Provider.of<AuthController>(context, listen: false);
-    await authController.logout();
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-  }
 
 class VideoPreviewTile extends StatefulWidget {
   final VideoInfo info;
