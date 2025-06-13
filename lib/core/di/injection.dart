@@ -1,3 +1,5 @@
+import 'package:clinica_exito/domain/usecases/login/logout_usecase.dart';
+
 import '../../data/datasources/local_auth_datasource.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/usecases/login/check_login_usecase.dart';
@@ -13,5 +15,6 @@ AuthController injectAuthController() {
     loginUseCase: LoginUseCase(repository),
     registerUseCase: RegisterUseCase(repository),
     checkLoginUseCase: CheckLoginUseCase(repository),
+    logoutUseCase: LogoutUseCase(repository),
   );
 }

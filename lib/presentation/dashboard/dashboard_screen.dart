@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../models/medicamento.dart';
 import '../../../core/theme/theme_provider.dart';
+import '../controllers/auth_controller.dart';
 import 'widgets/dashboard_header.dart';
 import 'widgets/medication_list.dart';
 
@@ -23,6 +24,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
     _medicationBox = Hive.box<Medicamento>('medicamentos');
   }
 
+  void _logout(BuildContext context) async {
+    print('Logout iniciado');
+    final authController = Provider.of<AuthController>(context, listen: false);
+    await authController.logout();
+    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+    print('Logout concluído');
+    //  Navigator.pushReplacementNamed(context, '/');
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -30,10 +40,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () => Navigator.pushNamed(context, '/doctors'),
-          tooltip: "Médicos",
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+            tooltip: "Abrir menu",
+          ),
         ),
         title: const Text(
           "Bem-vindo!",
@@ -50,6 +62,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 themeProvider.toggleTheme(!themeProvider.isDarkMode),
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text(
+                'Menu',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.local_hospital),
+              title: const Text('Médicos'),
+              onTap: () => Navigator.pushNamed(context, '/doctors'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Sair'),
+              onTap: () => _logout(context),
+            ),
+          ],
+        ),
       ),
       body: ValueListenableBuilder(
         valueListenable: _medicationBox.listenable(),

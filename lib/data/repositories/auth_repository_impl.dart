@@ -36,7 +36,8 @@ Future<bool> register(User user) async {
   }
 
   @override
-  Future<void> logout() {
+  Future<void> logout() async {
+    await datasource.setLoggedIn(false);
     return datasource.logout();
   }
 }
