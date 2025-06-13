@@ -6,7 +6,7 @@ class RegisterUseCase {
 
   RegisterUseCase(this.repository);
 
-  Future<void> call(User user) {
+  Future<bool> call(User user) {
     return repository.register(user);
   }
 }

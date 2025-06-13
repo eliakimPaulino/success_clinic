@@ -17,7 +17,7 @@ class AppRoutes {
           builder: (_) => LoginScreen(authController: injectAuthController()),
         );
       case '/register':
-        return MaterialPageRoute(builder: (_) => RegisterScreen());
+        return MaterialPageRoute(builder: (_) => RegisterScreen(authController: injectAuthController(),));
       case '/dashboard':
         return MaterialPageRoute(builder: (_) => DashboardScreen());
       case '/add-medication':

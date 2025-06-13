@@ -8,10 +8,17 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.datasource);
 
   @override
-  Future<void> register(User user) async {
-    await datasource.saveUser(user.email, user.password);
-    await datasource.setLoggedIn(true);
+Future<bool> register(User user) async {
+  final userExists = await datasource.userExists(user.email);
+
+  if (userExists) {
+    return false; // Já existe usuário com esse e-mail
   }
+
+  await datasource.saveUser(user.email, user.password);
+  await datasource.setLoggedIn(true);
+  return true;
+}
 
   @override
   Future<bool> login(String email, String password) async {

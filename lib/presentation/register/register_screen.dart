@@ -1,7 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/user.dart';
+import '../controllers/auth_controller.dart';
+
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  const RegisterScreen({super.key, required this.authController});
+
+  final AuthController authController;
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -15,16 +22,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // final _phoneController = TextEditingController();
   bool _acceptedTerms = false;
 
-  void _submit() {
-    if (_formKey.currentState!.validate() && _acceptedTerms) {
-      // Simule cadastro e vá para login
+  void _submit() async {
+  if (_formKey.currentState!.validate() && _acceptedTerms) {
+    final user = User(
+      name: _nameController.text.trim(),
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+
+    final success = await widget.authController.register(user);
+
+    if (success) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Cadastro realizado com sucesso!")),
+      );
       Navigator.pushReplacementNamed(context, '/');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Aceite os termos de uso para continuar")),
+        const SnackBar(content: Text("Erro ao cadastrar. Tente novamente.")),
       );
     }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Aceite os termos de uso para continuar")),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {

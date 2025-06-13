@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LocalAuthDatasource {
@@ -6,6 +7,8 @@ abstract class LocalAuthDatasource {
   Future<void> setLoggedIn(bool value);
   Future<bool> isLoggedIn();
   Future<void> logout();
+  Future<bool> userExists(String email);
+
 }
 
 class LocalAuthDatasourceImpl implements LocalAuthDatasource {
@@ -42,4 +45,11 @@ class LocalAuthDatasourceImpl implements LocalAuthDatasource {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', false);
   }
+
+  @override
+Future<bool> userExists(String email) async {
+  final box = await Hive.openBox('authBox');
+  return box.containsKey(email);
+}
+
 }

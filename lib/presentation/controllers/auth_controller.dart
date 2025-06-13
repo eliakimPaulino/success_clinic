@@ -19,7 +19,7 @@ class AuthController {
     return loginUseCase(email, password);
   }
 
-  Future<void> register(User user) {
+  Future<bool> register(User user) {
     return registerUseCase(user);
   }
 

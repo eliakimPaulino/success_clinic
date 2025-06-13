@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'core/routes/app_routes.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   // 1. Inicializa o diretório do Hive
   final appDocumentDir = await getApplicationDocumentsDirectory();
