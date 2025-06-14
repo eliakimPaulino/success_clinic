@@ -15,7 +15,7 @@ class AuthRepositoryImpl implements AuthRepository {
       return false;
     }
 
-    await datasource.saveUser(user.email, user.password, user.name);
+    await datasource.saveUser(user.name, user.email, user.password);
     await datasource.setLoggedIn(true);
     return true;
   }
