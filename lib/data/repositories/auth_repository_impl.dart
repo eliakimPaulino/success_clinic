@@ -22,8 +22,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<bool> login(String email, String password) async {
-    final stored = await datasource.getUser();
-    if (stored['email'] == email && stored['password'] == password) {
+    final user = await datasource.getUserByEmail(email);
+    if (user != null && user['password'] == password) {
       await datasource.setLoggedIn(true);
       return true;
     }
@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<String?> getCurrentUserName() async {
-    final data = await datasource.getUser();
-    return data['name'];
+    final user = await datasource.getLoggedInUser();
+    return user?['name'];
   }
 }

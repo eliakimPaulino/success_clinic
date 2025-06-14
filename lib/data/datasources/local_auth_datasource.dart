@@ -3,30 +3,39 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LocalAuthDatasource {
   Future<void> saveUser(String name, String email, String password);
-  Future<Map<String, String?>> getUser();
+  Future<Map<String, String>?> getUserByEmail(String email);
   Future<void> setLoggedIn(bool value);
   Future<bool> isLoggedIn();
   Future<void> logout();
   Future<bool> userExists(String email);
+  Future<Map<String, String>?> getLoggedInUser();
 }
 
 class LocalAuthDatasourceImpl implements LocalAuthDatasource {
   @override
   Future<void> saveUser(String name, String email, String password) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('name', name);
-    await prefs.setString('email', email);
-    await prefs.setString('password', password);
+    final box = await Hive.openBox('authBox');
+    await box.put(email, {'name': name, 'email': email, 'password': password});
+  }
+
+  Future<List<Map<String, String>>> getAllUsers() async {
+    final box = await Hive.openBox('authBox');
+    return box.values
+        .map<Map<String, String>>((user) => Map<String, String>.from(user))
+        .toList();
   }
 
   @override
-  Future<Map<String, String?>> getUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    return {
-      'name': prefs.getString('name'),
-      'email': prefs.getString('email'),
-      'password': prefs.getString('password'),
-    };
+  Future<Map<String, String>?> getUserByEmail(String email) async {
+    final box = await Hive.openBox('authBox');
+    final user = box.get(email);
+    if (user is Map) {
+      // Garante que todos os valores são String e não nulos
+      return user.map<String, String>(
+        (key, value) => MapEntry(key.toString(), value?.toString() ?? ''),
+      );
+    }
+    return null;
   }
 
   @override
@@ -51,5 +60,12 @@ class LocalAuthDatasourceImpl implements LocalAuthDatasource {
   Future<bool> userExists(String email) async {
     final box = await Hive.openBox('authBox');
     return box.containsKey(email);
+  }
+
+  Future<Map<String, String>?> getLoggedInUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString('loggedInEmail');
+    if (email == null) return null;
+    return getUserByEmail(email);
   }
 }

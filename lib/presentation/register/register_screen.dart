@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/user.dart';
 import '../controllers/auth_controller.dart';
@@ -23,31 +24,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _acceptedTerms = false;
 
   void _submit() async {
-  if (_formKey.currentState!.validate() && _acceptedTerms) {
-    final user = User(
-      name: _nameController.text.trim(),
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
-
-    final success = await widget.authController.register(user);
-
-    if (success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Cadastro realizado com sucesso!")),
+    if (_formKey.currentState!.validate() && _acceptedTerms) {
+      final user = User(
+        name: _nameController.text.trim(),
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
       );
-      Navigator.pushReplacementNamed(context, '/');
+
+      final success = await widget.authController.register(user);
+
+      if (success) {
+      /*
+          Hive: Armazena todos os usuários.
+          SharedPreferences: Armazena apenas o email do usuário atualmente logado.
+      */
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('loggedInEmail', user.email);
+      
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Cadastro realizado com sucesso!")),
+        );
+        print('Registrando usuário: ${user.name}, email: ${user.email} senha: ${user.password}');
+        Navigator.pushReplacementNamed(context, '/');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Erro ao cadastrar. Tente novamente.")),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Erro ao cadastrar. Tente novamente.")),
+        const SnackBar(content: Text("Aceite os termos de uso para continuar")),
       );
     }
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Aceite os termos de uso para continuar")),
-    );
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +92,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 title: Text("Aceito os termos de uso"),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submit,
-                child: Text('Cadastrar'),
-              )
+              ElevatedButton(onPressed: _submit, child: Text('Cadastrar')),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

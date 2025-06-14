@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:clinica_exito/presentation/controllers/auth_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   final AuthController authController;
@@ -13,32 +14,43 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _userEmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
   void _login() async {
     setState(() => _isLoading = true);
 
+    final email = _userEmailController.text.trim();
+
     final success = await widget.authController.login(
-      _usernameController.text.trim(),
+      _userEmailController.text.trim(),
       _passwordController.text.trim(),
     );
 
     setState(() => _isLoading = false);
 
     if (success) {
+      /*
+          Hive: Armazena os usuários.
+          SharedPreferences: Armazena apenas o email do usuário atualmente logado.
+      */
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('loggedInEmail', email);
+
       Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login falhou. Verifique suas credenciais.')),
+        const SnackBar(
+          content: Text('Login falhou. Verifique suas credenciais.'),
+        ),
       );
     }
   }
 
   @override
   void dispose() {
-    _usernameController.dispose();
+    _userEmailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -54,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
-                controller: _usernameController,
+                controller: _userEmailController,
                 decoration: const InputDecoration(labelText: 'Usuário'),
               ),
               TextField(
