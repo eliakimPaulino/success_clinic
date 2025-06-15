@@ -21,7 +21,7 @@ class KElevatedButtonTheme {
             fontWeight: FontWeight.w600,
           ), // Estilo do texto
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0), // Raio da borda
+            borderRadius: BorderRadius.circular(14.0), // Raio da borda
           ),
         ),
       );

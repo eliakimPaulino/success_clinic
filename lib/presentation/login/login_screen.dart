@@ -67,38 +67,35 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(title: const Center(child: Text("Login"))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              /*--------- INPUT PARA NOME DE USUARIO ---------*/
-              TextField(
-                controller: _userEmailController,
-                decoration: const InputDecoration(labelText: 'Usuário'),
-              ),
-
-              /*-------- INPUT PARA SENHA DE USUARIO --------*/
-              TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(labelText: 'Senha'),
-              ),
-
-              const SizedBox(height: 20),
-
-              /*--------- BOTAO DE LOGIN E CADASTRO ---------*/
-              _isLoading
-                  ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: _login,
-                      child: const Text("Entrar"),
-                    ),
-              TextButton(
-                onPressed: () => Navigator.pushNamed(context, '/register'),
-                child: const Text("Não tem uma conta? Cadastre-se"),
-              ),
-            ],
-          ),
+        child: Column(
+          spacing: 24.0,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            /*--------- INPUT PARA NOME DE USUARIO ---------*/
+            TextField(
+              controller: _userEmailController,
+              decoration: const InputDecoration(labelText: 'Usuário'),
+            ),
+        
+            /*-------- INPUT PARA SENHA DE USUARIO --------*/
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: const InputDecoration(labelText: 'Senha'),
+            ),
+        
+            /*--------- BOTAO DE LOGIN E CADASTRO ---------*/
+            _isLoading
+                ? const CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: _login,
+                    child: const Text("Entrar"),
+                  ),
+            TextButton(
+              onPressed: () => Navigator.pushNamed(context, '/register'),
+              child: const Text("Não tem uma conta? Cadastre-se"),
+            ),
+          ],
         ),
       ),
     );

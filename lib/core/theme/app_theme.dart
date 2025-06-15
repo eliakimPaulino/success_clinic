@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:success_clinic/core/theme/custom_theme/bottom_sheet_theme.dart';
 import 'package:success_clinic/core/theme/custom_theme/checkbox_theme.dart';
 
+import '../constants/success_clinic_colors.dart';
 import 'custom_theme/appbar_theme.dart';
 import 'custom_theme/chip_theme.dart';
 import 'custom_theme/outlined_button_theme.dart';
@@ -30,15 +31,30 @@ class AppTheme {
     bottomSheetTheme: KBottomSheetTheme.lightBottomSheetTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
+        backgroundColor: KSuccessClinicColors.accent,
+        foregroundColor: KSuccessClinicColors.light,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       ),
     ),
     outlinedButtonTheme: KOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: KTextFormFieldTheme.lightInputDecorationTheme,
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: KSuccessClinicColors.accent,
+      foregroundColor: KSuccessClinicColors.light,
+      elevation: 4,
+      shape: CircleBorder(),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: KSuccessClinicColors.accent, // Cor do texto do botão
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600), // Estilo do texto
+      ),
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: KSuccessClinicColors.accent,
+    selectionColor: KSuccessClinicColors.accent,
+    selectionHandleColor: KSuccessClinicColors.primary,
+  ),
   );
 
   /*----------------- TEMA ESCURO -----------------*/
@@ -54,14 +70,29 @@ class AppTheme {
     bottomSheetTheme: KBottomSheetTheme.darkBottomSheetTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.black,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
+        backgroundColor: KSuccessClinicColors.primary,
+        foregroundColor: KSuccessClinicColors.black,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       ),
     ),
     outlinedButtonTheme: KOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: KTextFormFieldTheme.darkInputDecorationTheme,
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: KSuccessClinicColors.primary,
+      foregroundColor: KSuccessClinicColors.black,
+      elevation: 4,
+      shape: CircleBorder(),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: KSuccessClinicColors.primary, // Cor do texto do botão
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600), // Estilo do texto
+      ),
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: KSuccessClinicColors.primary,
+    selectionColor: KSuccessClinicColors.primary,
+    selectionHandleColor: KSuccessClinicColors.primary,
+  ),
   );
 }
