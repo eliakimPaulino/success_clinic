@@ -14,10 +14,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  //#----- CONTROLADORES PARA ENTRADA DE DADOS -----#
   final TextEditingController _userEmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
+  //#--------- REALIZA O PROCESSO DE LOGIN ---------#
   void _login() async {
     setState(() => _isLoading = true);
 
@@ -47,14 +49,18 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
   }
+  //#------------ FIM PROCESSO DE LOGIN ------------#
 
+  //#------ LIBERA RECURSOS DOS CONTROLADORES ------#
   @override
   void dispose() {
     _userEmailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
+  //#------- FIM LIBERA RECURSO CONTROLADORES -------#
 
+  //#-------- CONSTRUCAO INTERFACE DE LOGIN --------#
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,16 +71,22 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //#---------- INPUT PARA NOME DE USUARIO ----------#
               TextField(
                 controller: _userEmailController,
                 decoration: const InputDecoration(labelText: 'Usuário'),
               ),
+
+              //#--------- INPUT PARA SENHA DE USUARIO ---------#
               TextField(
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(labelText: 'Senha'),
               ),
+
               const SizedBox(height: 20),
+              
+              //#---------- BOTAO DE LOGIN E CADASTRO ----------#
               _isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
