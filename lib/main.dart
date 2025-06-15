@@ -12,38 +12,6 @@ import 'package:provider/provider.dart';
 import 'core/routes/app_routes.dart';
 import 'presentation/controllers/auth_controller.dart';
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-
-//   // 1. Inicializa o diretório do Hive
-//   final appDocumentDir = await getApplicationDocumentsDirectory();
-//   Hive.init(appDocumentDir.path);
-
-//   // 2. Registra todos os adapters ANTES de abrir caixas ou injetar dependências
-//   Hive.registerAdapter(MedicoAdapter());
-//   Hive.registerAdapter(MedicamentoAdapter());
-
-//   // Abra as boxes necessárias aqui
-//   await Hive.openBox<Medico>('medicos');
-//   await Hive.openBox<Medicamento>('medicamentos');
-
-//   // 3. Injeta dependências (setupInjector pode abrir caixas usando Hive)
-//   await setupInjector();
-
-//   // 4. Inicia o app
-//     final authController = getIt<AuthController>();
-//   runApp(
-
-//     MultiProvider(
-//     providers: [
-//       ChangeNotifierProvider(create: (_) => ThemeProvider()),
-//       Provider<AuthController>.value(value: authController),
-//     ],
-//     child: const ClinicaExitoApp(),
-//   ),
-//   );
-// }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   print('>> main: iniciado');
