@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:success_clinic/core/constants/sizes.dart';
-import '../../constants/colors.dart';
+import '../../constants/success_clinic_colors.dart';
 
 class KAppBarTheme{
   KAppBarTheme._();
@@ -14,9 +14,9 @@ class KAppBarTheme{
     scrolledUnderElevation: 0, // Sem sombra ao rolar
     backgroundColor: Colors.transparent, // Cor de fundo transparente
     surfaceTintColor: Colors.transparent, // Sem cor de superfície
-    iconTheme: IconThemeData(color: KColors.black, size: KSizes.iconMd), // Cor e tamanho dos ícones
-    actionsIconTheme: IconThemeData(color: KColors.black, size: KSizes.iconMd), // Cor e tamanho dos ícones de ação
-    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KColors.black), // Estilo do texto do título
+    iconTheme: IconThemeData(color: KSuccessClinicColors.black, size: KSizes.iconMd), // Cor e tamanho dos ícones
+    actionsIconTheme: IconThemeData(color: KSuccessClinicColors.black, size: KSizes.iconMd), // Cor e tamanho dos ícones de ação
+    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KSuccessClinicColors.black), // Estilo do texto do título
   );
 
   /// Tema para AppBar Escuro
@@ -28,8 +28,8 @@ class KAppBarTheme{
     scrolledUnderElevation: 0, // Sem sombra ao rolar
     backgroundColor: Colors.transparent, // Cor de fundo transparente
     surfaceTintColor: Colors.transparent, // Sem cor de superfície
-    iconTheme: IconThemeData(color: KColors.white, size: KSizes.iconMd), // Cor e tamanho dos ícones
-    actionsIconTheme: IconThemeData(color: KColors.white, size: KSizes.iconMd), // Cor e tamanho dos ícones de ação
-    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KColors.white), // Estilo do texto do título
+    iconTheme: IconThemeData(color: KSuccessClinicColors.white, size: KSizes.iconMd), // Cor e tamanho dos ícones
+    actionsIconTheme: IconThemeData(color: KSuccessClinicColors.white, size: KSizes.iconMd), // Cor e tamanho dos ícones de ação
+    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KSuccessClinicColors.white), // Estilo do texto do título
   );
 }

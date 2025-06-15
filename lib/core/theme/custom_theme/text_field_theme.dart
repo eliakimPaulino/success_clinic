@@ -1,69 +1,69 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
+import '../../constants/success_clinic_colors.dart';
 
 class KTextFormFieldTheme {
   KTextFormFieldTheme._();
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 3, // Número máximo de linhas para mensagens de erro
-    prefixIconColor: KColors.darkGrey, // Cor do ícone prefixo
-    suffixIconColor: KColors.darkGrey, // Cor do ícone sufixo
+    prefixIconColor: KSuccessClinicColors.darkGrey, // Cor do ícone prefixo
+    suffixIconColor: KSuccessClinicColors.darkGrey, // Cor do ícone sufixo
     // constraints: const BoxConstraints.expand(height: KSizes.inputFieldHeight), // Restrições de altura do campo (comentado)
-    labelStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeMd, color: KColors.black), // Estilo do rótulo
-    hintStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeSm, color: KColors.black), // Estilo da dica
+    labelStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeMd, color: KSuccessClinicColors.black), // Estilo do rótulo
+    hintStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeSm, color: KSuccessClinicColors.black), // Estilo da dica
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal), // Estilo da mensagem de erro
-    floatingLabelStyle: const TextStyle().copyWith(color: KColors.black.withOpacity(0.8)), // Estilo do rótulo flutuante
+    floatingLabelStyle: const TextStyle().copyWith(color: KSuccessClinicColors.black.withOpacity(0.8)), // Estilo do rótulo flutuante
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.grey),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.grey),
     ), // Borda padrão
     enabledBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.grey),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.grey),
     ), // Borda quando habilitado
     focusedBorder:const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.dark),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.dark),
     ), // Borda quando focado
     errorBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.warning),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.warning),
     ), // Borda em caso de erro
     focusedErrorBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 2, color: KColors.warning),
+      borderSide: const BorderSide(width: 2, color: KSuccessClinicColors.warning),
     ), // Borda em caso de erro e focado
   );
 
   static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 2, // Número máximo de linhas para mensagens de erro
-    prefixIconColor: KColors.darkGrey, // Cor do ícone prefixo
-    suffixIconColor: KColors.darkGrey, // Cor do ícone sufixo
+    prefixIconColor: KSuccessClinicColors.darkGrey, // Cor do ícone prefixo
+    suffixIconColor: KSuccessClinicColors.darkGrey, // Cor do ícone sufixo
     // constraints: const BoxConstraints.expand(height: KSizes.inputFieldHeight), // Restrições de altura do campo (comentado)
-    labelStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeMd, color: KColors.white), // Estilo do rótulo
-    hintStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeSm, color: KColors.white), // Estilo da dica
-    floatingLabelStyle: const TextStyle().copyWith(color: KColors.white.withOpacity(0.8)), // Estilo do rótulo flutuante
+    labelStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeMd, color: KSuccessClinicColors.white), // Estilo do rótulo
+    hintStyle: const TextStyle().copyWith(fontSize: KSizes.fontSizeSm, color: KSuccessClinicColors.white), // Estilo da dica
+    floatingLabelStyle: const TextStyle().copyWith(color: KSuccessClinicColors.white.withOpacity(0.8)), // Estilo do rótulo flutuante
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.darkGrey),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.darkGrey),
     ), // Borda padrão
     enabledBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.darkGrey),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.darkGrey),
     ), // Borda quando habilitado
     focusedBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.white),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.white),
     ), // Borda quando focado
     errorBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 1, color: KColors.warning),
+      borderSide: const BorderSide(width: 1, color: KSuccessClinicColors.warning),
     ), // Borda em caso de erro
     focusedErrorBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(KSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 2, color: KColors.warning),
+      borderSide: const BorderSide(width: 2, color: KSuccessClinicColors.warning),
     ), // Borda em caso de erro e focado
   );
 }
