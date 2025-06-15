@@ -8,6 +8,9 @@ version: 1.0.0+1
 environment:
   sdk: ^3.8.0
 
+#-------------./ PACKAGES START---------------#
+# This section defines the packages that the Flutter application depends on.
+
 dependencies:
   flutter:
     sdk: flutter
@@ -26,6 +29,8 @@ dependencies:
   shared_preferences: ^2.5.3
   get_it: ^8.0.3
 
+#-------------./ PACKAGES END---------------#
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -35,5 +40,33 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  #-------------LOCAL ASSETS---------------- # 
   assets:
     - assets/
+    - assets\fonts
+    - assets\icons
+    - assets\images
+    - assets\images\doctors_images
+    - assets\videos
+    - assets\audio
+    - assets\logos
+  #-------------LOCAL ASSETS END---------------- #
+
+  #-------------LOCAL FONTS---------------- #
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/OpenSans-Italic.ttf
+          style: italic
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto-Italic.ttf
+          style: italic
+  #-------------LOCAL FONTS END---------------- #
