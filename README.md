@@ -23,13 +23,6 @@ Execute 'flutter run' para iniciar o aplicativo
 
 ---
 
-## 📱 Tecnologias Utilizadas
-
-- Flutter
-- Dart
-
----
-
 ## 📁 Estrutura do Projeto
 O projeto segue o padrão de arquitetura limpa (Clean Architecture), separando as responsabilidades em camadas de domínio, dados e apresentação, facilitando a manutenção e escalabilidade do código.
 
