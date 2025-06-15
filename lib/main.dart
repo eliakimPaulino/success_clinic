@@ -63,13 +63,13 @@ class ClinicaExitoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       title: 'Success Clinic',
       debugShowCheckedModeBanner: false,
-      themeMode: themeProvider.themeMode,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.system,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       onGenerateRoute: AppRoutes.onGenerateRoute,
       initialRoute: '/',
     );

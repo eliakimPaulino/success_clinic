@@ -39,7 +39,7 @@ class DashboardHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
-                  'João da Silva',
+                  'Eliakim França',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
@@ -47,10 +47,10 @@ class DashboardHeader extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 4),
-                Text('35  •  Masculino', style: TextStyle(color: Colors.white)),
+                Text('32  •  M', style: TextStyle(color: Colors.white)),
                 SizedBox(height: 4),
                 Text(
-                  'Clínica Êxito',
+                  'Clínica de Sucesso',
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
                 Text(
