@@ -13,48 +13,48 @@ import 'core/routes/app_routes.dart';
 import 'presentation/controllers/auth_controller.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // Garante que o Flutter está pronto antes de executar código assíncrono
   print('>> main: iniciado');
 
   try {
     print('>> Hive init');
-    final appDocumentDir = await getApplicationDocumentsDirectory();
-    Hive.init(appDocumentDir.path);
+    final appDocumentDir = await getApplicationDocumentsDirectory(); // Obtém o diretório de documentos do app
+    Hive.init(appDocumentDir.path); // Inicializa o Hive com o caminho do diretório
 
     print('>> Hive register adapters');
-    Hive.registerAdapter(MedicoAdapter());
-    Hive.registerAdapter(MedicamentoAdapter());
+    Hive.registerAdapter(MedicoAdapter()); // Registra o adapter do modelo Medico para Hive
+    Hive.registerAdapter(MedicamentoAdapter()); // Registra o adapter do modelo Medicamento para Hive
 
     print('>> Hive open boxes');
-    await Hive.openBox<Medico>('medicos');
-    await Hive.openBox<Medicamento>('medicamentos');
+    await Hive.openBox<Medico>('medicos'); // Abre a box (tabela) de médicos
+    await Hive.openBox<Medicamento>('medicamentos'); // Abre a box (tabela) de medicamentos
   } catch (e, s) {
-    print('Erro no setup do Hive: $e\n$s');
+    print('Erro no setup do Hive: $e\n$s'); // Captura e exibe erros na configuração do Hive
   }
 
   try {
     print('>> setupInjector');
-    await setupInjector();
+    await setupInjector(); // Configura a injeção de dependências (getIt)
   } catch (e, s) {
-    print('Erro no setupInjector: $e\n$s');
+    print('Erro no setupInjector: $e\n$s'); // Captura e exibe erros na configuração do injector
   }
 
   try {
     print('>> recupera AuthController');
-    final authController = getIt<AuthController>();
+    final authController = getIt<AuthController>(); // Recupera o AuthController usando o getIt
     print('>> authController ok: $authController');
     runApp(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => ThemeProvider()),
-          Provider<AuthController>.value(value: authController),
+          ChangeNotifierProvider(create: (_) => ThemeProvider()), // Provider para alternância de tema (claro/escuro)
+          Provider<AuthController>.value(value: authController), // Provider para autenticação
         ],
-        child: const ClinicaExitoApp(),
+        child: const ClinicaExitoApp(), // Widget raiz do app
       ),
     );
     print('>> runApp chamado');
   } catch (e, s) {
-    print('Erro antes do runApp: $e\n$s');
+    print('Erro antes do runApp: $e\n$s'); // Captura e exibe erros antes de rodar o app
   }
 }
 
@@ -63,15 +63,14 @@ class ClinicaExitoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-      title: 'Success Clinic',
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      onGenerateRoute: AppRoutes.onGenerateRoute,
-      initialRoute: '/',
+      title: 'Success Clinic', // Título do app
+      debugShowCheckedModeBanner: false, // Remove o banner de debug
+      themeMode: ThemeMode.system, // Usa o tema do sistema (claro/escuro)
+      theme: AppTheme.lightTheme, // Tema claro
+      darkTheme: AppTheme.darkTheme, // Tema escuro
+      onGenerateRoute: AppRoutes.onGenerateRoute, // Gerenciamento de rotas nomeadas
+      initialRoute: '/', // Rota inicial do app
     );
   }
 }
