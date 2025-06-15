@@ -1,6 +1,6 @@
-import 'package:success_clinic/core/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+import '../../../core/constants/success_clinic_colors.dart';
 
 class DashboardHeader extends StatelessWidget {
   final MediaQueryData mediaQuery;
@@ -9,7 +9,7 @@ class DashboardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final alturaCabecalho = mediaQuery.size.height * 0.20;
 
     return Container(
@@ -17,7 +17,9 @@ class DashboardHeader extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: themeProvider.isDarkMode ? null : Colors.indigo,
+        color: isDark
+            ? KSuccessClinicColors.primary
+            : KSuccessClinicColors.accent,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(24),
           bottomRight: Radius.circular(24),
