@@ -14,18 +14,14 @@ import 'presentation/controllers/auth_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Garante que o Flutter está pronto antes de executar código assíncrono
-  print('>> main: iniciado');
 
   try {
-    print('>> Hive init');
     final appDocumentDir = await getApplicationDocumentsDirectory(); // Obtém o diretório de documentos do app
     Hive.init(appDocumentDir.path); // Inicializa o Hive com o caminho do diretório
 
-    print('>> Hive register adapters');
     Hive.registerAdapter(MedicoAdapter()); // Registra o adapter do modelo Medico para Hive
     Hive.registerAdapter(MedicamentoAdapter()); // Registra o adapter do modelo Medicamento para Hive
 
-    print('>> Hive open boxes');
     await Hive.openBox<Medico>('medicos'); // Abre a box (tabela) de médicos
     await Hive.openBox<Medicamento>('medicamentos'); // Abre a box (tabela) de medicamentos
   } catch (e, s) {
@@ -33,16 +29,13 @@ void main() async {
   }
 
   try {
-    print('>> setupInjector');
     await setupInjector(); // Configura a injeção de dependências (getIt)
   } catch (e, s) {
     print('Erro no setupInjector: $e\n$s'); // Captura e exibe erros na configuração do injector
   }
 
   try {
-    print('>> recupera AuthController');
     final authController = getIt<AuthController>(); // Recupera o AuthController usando o getIt
-    print('>> authController ok: $authController');
     runApp(
       MultiProvider(
         providers: [
@@ -52,7 +45,6 @@ void main() async {
         child: const ClinicaExitoApp(), // Widget raiz do app
       ),
     );
-    print('>> runApp chamado');
   } catch (e, s) {
     print('Erro antes do runApp: $e\n$s'); // Captura e exibe erros antes de rodar o app
   }
