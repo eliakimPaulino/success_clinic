@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+//ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:success_clinic/presentation/controllers/auth_controller.dart';
@@ -14,12 +14,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //#----- CONTROLADORES PARA ENTRADA DE DADOS -----#
+  /*---- CONTROLADORES PARA ENTRADA DE DADOS ----*/
   final TextEditingController _userEmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
-  //#--------- REALIZA O PROCESSO DE LOGIN ---------#
+  /*-------- REALIZA O PROCESSO DE LOGIN --------*/
   void _login() async {
     setState(() => _isLoading = true);
 
@@ -49,18 +49,18 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
   }
-  //#------------ FIM PROCESSO DE LOGIN ------------#
+  /*----------- FIM PROCESSO DE LOGIN -----------*/
 
-  //#------ LIBERA RECURSOS DOS CONTROLADORES ------#
+  /*----- LIBERA RECURSOS DOS CONTROLADORES -----*/
   @override
   void dispose() {
     _userEmailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-  //#------- FIM LIBERA RECURSO CONTROLADORES -------#
+  /*------ FIM LIBERA RECURSO CONTROLADORES ------*/
 
-  //#-------- CONSTRUCAO INTERFACE DE LOGIN --------#
+  /*------- CONSTRUCAO INTERFACE DE LOGIN -------*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,13 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //#---------- INPUT PARA NOME DE USUARIO ----------#
+              /*--------- INPUT PARA NOME DE USUARIO ---------*/
               TextField(
                 controller: _userEmailController,
                 decoration: const InputDecoration(labelText: 'Usuário'),
               ),
 
-              //#--------- INPUT PARA SENHA DE USUARIO ---------#
+              /*-------- INPUT PARA SENHA DE USUARIO --------*/
               TextField(
                 controller: _passwordController,
                 obscureText: true,
@@ -85,8 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               const SizedBox(height: 20),
-              
-              //#---------- BOTAO DE LOGIN E CADASTRO ----------#
+
+              /*--------- BOTAO DE LOGIN E CADASTRO ---------*/
               _isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
