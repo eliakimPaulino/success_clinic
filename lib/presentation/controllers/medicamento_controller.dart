@@ -1,5 +1,5 @@
-import 'package:clinica_exito/domain/repositories/i_medicamento_repository.dart';
-import 'package:clinica_exito/models/medicamento.dart';
+import 'package:success_clinic/domain/repositories/i_medicamento_repository.dart';
+import 'package:success_clinic/models/medicamento.dart';
 import 'package:flutter/material.dart';
 
 // This controller manages the list of doctors, allowing to load, add, and remove doctors.

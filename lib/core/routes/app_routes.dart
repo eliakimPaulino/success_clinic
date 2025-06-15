@@ -1,8 +1,8 @@
-import 'package:clinica_exito/core/di/injection.dart';
-import 'package:clinica_exito/presentation/dashboard/dashboard_screen.dart';
-import 'package:clinica_exito/presentation/doctors/doctors_screen.dart';
-import 'package:clinica_exito/models/medication_info_model.dart';
-import 'package:clinica_exito/presentation/medication_info/medication_info_screen.dart';
+import 'package:success_clinic/core/di/injection.dart';
+import 'package:success_clinic/presentation/dashboard/dashboard_screen.dart';
+import 'package:success_clinic/presentation/doctors/doctors_screen.dart';
+import 'package:success_clinic/models/medication_info_model.dart';
+import 'package:success_clinic/presentation/medication_info/medication_info_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/login/login_screen.dart';

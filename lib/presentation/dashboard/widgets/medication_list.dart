@@ -1,13 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:clinica_exito/core/shared/widgets/snackbars.dart';
+import 'package:success_clinic/core/shared/widgets/snackbars.dart';
 import 'package:flutter/material.dart';
-import 'package:clinica_exito/models/medicamento.dart';
-import 'package:clinica_exito/models/medication_info_model.dart';
-import 'package:clinica_exito/models/medications_details_list.dart';
-import 'package:clinica_exito/presentation/dashboard/widgets/medication_tile.dart';
-import 'package:clinica_exito/presentation/controllers/medicamento_controller.dart';
-import 'package:clinica_exito/core/injector.dart';
+import 'package:success_clinic/models/medicamento.dart';
+import 'package:success_clinic/models/medication_info_model.dart';
+import 'package:success_clinic/models/medications_details_list.dart';
+import 'package:success_clinic/presentation/dashboard/widgets/medication_tile.dart';
+import 'package:success_clinic/presentation/controllers/medicamento_controller.dart';
+import 'package:success_clinic/core/injector.dart';
 import 'package:hive/hive.dart';
 
 class MedicationList extends StatefulWidget {

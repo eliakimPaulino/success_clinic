@@ -1,13 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:clinica_exito/presentation/controllers/medication_controller.dart';
-import 'package:clinica_exito/presentation/medication_form/widgets/dosage_dropdown.dart';
-import 'package:clinica_exito/presentation/medication_form/widgets/interval_dropdown.dart';
-import 'package:clinica_exito/presentation/medication_form/widgets/medication_dropdown.dart';
-import 'package:clinica_exito/core/shared/widgets/snackbars.dart';
+import 'package:success_clinic/presentation/controllers/medication_controller.dart';
+import 'package:success_clinic/presentation/medication_form/widgets/dosage_dropdown.dart';
+import 'package:success_clinic/presentation/medication_form/widgets/interval_dropdown.dart';
+import 'package:success_clinic/presentation/medication_form/widgets/medication_dropdown.dart';
+import 'package:success_clinic/core/shared/widgets/snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:clinica_exito/models/medicamento.dart';
+import 'package:success_clinic/models/medicamento.dart';
 
 class MedicationFormScreen extends StatefulWidget {
   const MedicationFormScreen({super.key});

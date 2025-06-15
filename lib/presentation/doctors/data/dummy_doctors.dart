@@ -1,4 +1,4 @@
-import 'package:clinica_exito/models/medico.dart';
+import 'package:success_clinic/models/medico.dart';
 
 final List<Medico> dummyDoctors = [
   Medico(

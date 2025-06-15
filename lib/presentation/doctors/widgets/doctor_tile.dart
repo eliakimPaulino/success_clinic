@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:clinica_exito/models/medico.dart';
+import 'package:success_clinic/models/medico.dart';
 
 class DoctorTile extends StatelessWidget {
   final Medico medico;

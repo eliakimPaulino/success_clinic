@@ -1,4 +1,4 @@
-import 'package:clinica_exito/models/medication_model.dart';
+import 'package:success_clinic/models/medication_model.dart';
 import 'package:hive/hive.dart';
 
 class RemedioRepository {

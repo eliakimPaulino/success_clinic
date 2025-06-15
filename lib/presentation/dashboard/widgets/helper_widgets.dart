@@ -1,4 +1,4 @@
-import 'package:clinica_exito/models/video_info.dart';
+import 'package:success_clinic/models/video_info.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';

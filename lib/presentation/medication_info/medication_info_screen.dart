@@ -1,9 +1,9 @@
-import 'package:clinica_exito/presentation/dashboard/widgets/helper_widgets.dart';
-import 'package:clinica_exito/presentation/medication_info/widgets/info_section.dart';
-import 'package:clinica_exito/presentation/medication_info/widgets/medication_header.dart';
+import 'package:success_clinic/presentation/dashboard/widgets/helper_widgets.dart';
+import 'package:success_clinic/presentation/medication_info/widgets/info_section.dart';
+import 'package:success_clinic/presentation/medication_info/widgets/medication_header.dart';
 import 'package:flutter/material.dart';
-import 'package:clinica_exito/models/medication_info_model.dart';
-import 'package:clinica_exito/models/video_info.dart';
+import 'package:success_clinic/models/medication_info_model.dart';
+import 'package:success_clinic/models/video_info.dart';
 
 class MedicationInfoScreen extends StatefulWidget {
   final MedicationInfo info;

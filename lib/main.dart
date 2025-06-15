@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_print
 
-import 'package:clinica_exito/core/injector.dart';
-import 'package:clinica_exito/core/theme/app_theme.dart';
-import 'package:clinica_exito/core/theme/theme_provider.dart';
-import 'package:clinica_exito/models/medicamento.dart';
-import 'package:clinica_exito/models/medico.dart';
+import 'package:success_clinic/core/injector.dart';
+import 'package:success_clinic/core/theme/app_theme.dart';
+import 'package:success_clinic/core/theme/theme_provider.dart';
+import 'package:success_clinic/models/medicamento.dart';
+import 'package:success_clinic/models/medico.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';

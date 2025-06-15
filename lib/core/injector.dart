@@ -1,8 +1,8 @@
-import 'package:clinica_exito/presentation/controllers/medicamento_controller.dart';
-import 'package:clinica_exito/presentation/controllers/medico_controller.dart';
-import 'package:clinica_exito/domain/repositories/i_medicamento_repository.dart';
-import 'package:clinica_exito/data/repositories/hive_medicamento_repository.dart';
-import 'package:clinica_exito/models/medicamento.dart';
+import 'package:success_clinic/presentation/controllers/medicamento_controller.dart';
+import 'package:success_clinic/presentation/controllers/medico_controller.dart';
+import 'package:success_clinic/domain/repositories/i_medicamento_repository.dart';
+import 'package:success_clinic/data/repositories/hive_medicamento_repository.dart';
+import 'package:success_clinic/models/medicamento.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 

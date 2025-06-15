@@ -1,5 +1,5 @@
-import 'package:clinica_exito/presentation/doctors/data/dummy_doctors.dart';
-import 'package:clinica_exito/presentation/doctors/widgets/doctor_tile.dart';
+import 'package:success_clinic/presentation/doctors/data/dummy_doctors.dart';
+import 'package:success_clinic/presentation/doctors/widgets/doctor_tile.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsScreen extends StatelessWidget {

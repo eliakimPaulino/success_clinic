@@ -1,5 +1,5 @@
-import 'package:clinica_exito/domain/usecases/doctor/cadastrar_medico_usecase.dart';
-import 'package:clinica_exito/domain/usecases/doctor/listar_medico_usecase.dart';
+import 'package:success_clinic/domain/usecases/doctor/cadastrar_medico_usecase.dart';
+import 'package:success_clinic/domain/usecases/doctor/listar_medico_usecase.dart';
 import 'package:flutter/material.dart';
 import '../../domain/usecases/doctor/remover_medico_usecase.dart';
 import '../../models/medico.dart';

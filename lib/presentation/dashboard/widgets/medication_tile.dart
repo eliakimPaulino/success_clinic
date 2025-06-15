@@ -1,5 +1,5 @@
-import 'package:clinica_exito/models/medication_info_model.dart';
-import 'package:clinica_exito/models/medicamento.dart';
+import 'package:success_clinic/models/medication_info_model.dart';
+import 'package:success_clinic/models/medicamento.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

@@ -1,4 +1,4 @@
-import 'package:clinica_exito/models/medicamento.dart';
+import 'package:success_clinic/models/medicamento.dart';
 
 // A interface diz o que fazer, mas não como. Ideal para isolar a camada de domínio.
 

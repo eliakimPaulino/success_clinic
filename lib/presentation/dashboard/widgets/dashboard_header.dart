@@ -1,4 +1,4 @@
-import 'package:clinica_exito/core/theme/theme_provider.dart';
+import 'package:success_clinic/core/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

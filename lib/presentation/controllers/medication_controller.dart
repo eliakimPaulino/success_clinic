@@ -1,4 +1,4 @@
-import 'package:clinica_exito/models/medicamento.dart';
+import 'package:success_clinic/models/medicamento.dart';
 
 class MedicationFormController {
   String? name;

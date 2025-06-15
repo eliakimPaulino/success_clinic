@@ -1,7 +1,7 @@
 
 
-import 'package:clinica_exito/domain/repositories/i_medico_repository.dart';
-import 'package:clinica_exito/models/medico.dart';
+import 'package:success_clinic/domain/repositories/i_medico_repository.dart';
+import 'package:success_clinic/models/medico.dart';
 
 class FakeMedicoRepository implements IMedicoRepository {
   final List<Medico> _data = [];

@@ -1,5 +1,5 @@
-import 'package:clinica_exito/domain/repositories/i_medicamento_repository.dart';
-import 'package:clinica_exito/models/medicamento.dart';
+import 'package:success_clinic/domain/repositories/i_medicamento_repository.dart';
+import 'package:success_clinic/models/medicamento.dart';
 import 'package:hive/hive.dart';
 
 // essa classe é responsável por persistir os dados dos medicamentos usando o Hive. Se outra classe quiser persistir os dados de outra forma, basta implementar a interface IMedicoRepository.

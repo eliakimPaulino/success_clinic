@@ -1,5 +1,5 @@
-import 'package:clinica_exito/domain/usecases/login/get_currente_user_name.dart';
-import 'package:clinica_exito/domain/usecases/login/logout_usecase.dart';
+import 'package:success_clinic/domain/usecases/login/get_currente_user_name.dart';
+import 'package:success_clinic/domain/usecases/login/logout_usecase.dart';
 
 import '../../data/datasources/local_auth_datasource.dart';
 import '../../data/repositories/auth_repository_impl.dart';
