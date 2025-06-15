@@ -1,6 +1,25 @@
 # 💼 Success Clinic
 
-Success Clinic é um aplicativo desenvolvido com Flutter para gerenciamento de atendimentos clínicos, focando na organização de pacientes, agendamentos e usuários.
+Aplicativo Flutter para gerenciamento de uma clínica médica, com foco em controle de usuários, médicos e medicações. O sistema permite cadastro e autenticação de usuários, gerenciamento de profissionais de saúde, registro e acompanhamento de medicações, além de oferecer uma interface intuitiva para navegação e administração das funcionalidades da clínica.
+---
+## Funcionalidades
+- Cadastro e login de usuários
+- Gerenciamento de médicos (cadastro, listagem, remoção)
+- Gerenciamento de medicações (cadastro, listagem, detalhes)
+- Dashboard com visão geral das informações
+- Persistência local de dados utilizando Hive e SharedPreferences
+- Interface moderna e responsiva
+---
+## 📱 Tecnologias Utilizadas
+- Flutter
+- Hive (persistência local)
+- SharedPreferences (armazenamento de preferências)
+- Clean Architecture
+---
+## Como rodar o projeto
+Clone este repositório
+Execute 'flutter pub get' para instalar as dependências
+Execute 'flutter run' para iniciar o aplicativo
 
 ---
 
@@ -12,6 +31,7 @@ Success Clinic é um aplicativo desenvolvido com Flutter para gerenciamento de a
 ---
 
 ## 📁 Estrutura do Projeto
+O projeto segue o padrão de arquitetura limpa (Clean Architecture), separando as responsabilidades em camadas de domínio, dados e apresentação, facilitando a manutenção e escalabilidade do código.
 
 ```bash
 lib/
