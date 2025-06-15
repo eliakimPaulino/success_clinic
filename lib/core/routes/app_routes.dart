@@ -9,7 +9,7 @@ import '../../presentation/login/login_screen.dart';
 import '../../presentation/register/register_screen.dart';
 import '../../presentation/medication_form/medication_form_screen.dart';
 
-class AppRoutes {
+class KAppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':

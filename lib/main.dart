@@ -42,7 +42,7 @@ void main() async {
           ChangeNotifierProvider(create: (_) => ThemeProvider()), // Provider para alternância de tema (claro/escuro)
           Provider<AuthController>.value(value: authController), // Provider para autenticação
         ],
-        child: const ClinicaExitoApp(), // Widget raiz do app
+        child: const SuccessClinicApp(), // Widget raiz do app
       ),
     );
   } catch (e, s) {
@@ -50,19 +50,19 @@ void main() async {
   }
 }
 
-class ClinicaExitoApp extends StatelessWidget {
-  const ClinicaExitoApp({super.key});
+class SuccessClinicApp extends StatelessWidget {
+  const SuccessClinicApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Success Clinic', // Título do app
-      debugShowCheckedModeBanner: false, // Remove o banner de debug
-      themeMode: ThemeMode.system, // Usa o tema do sistema (claro/escuro)
-      theme: AppTheme.lightTheme, // Tema claro
-      darkTheme: AppTheme.darkTheme, // Tema escuro
-      onGenerateRoute: AppRoutes.onGenerateRoute, // Gerenciamento de rotas nomeadas
-      initialRoute: '/', // Rota inicial do app
+      title: 'Success Clinic',
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      onGenerateRoute: KAppRoutes.onGenerateRoute, // Gerenciamento de rotas nomeadas
+      initialRoute: '/',
     );
   }
 }

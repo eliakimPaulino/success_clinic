@@ -43,34 +43,34 @@ class KTextTheme {
     bodyLarge: TextStyle().copyWith(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
-      color: Colors.white,
+      color: Colors.black,
     ),
     bodyMedium: TextStyle().copyWith(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
-      color: Colors.white,
+      color: Colors.black,
     ),
     bodySmall: TextStyle().copyWith(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
-      color: Colors.white,
+      color: Colors.black,
     ),
 
     /* LABEL: TEXTO DE RÓTULO, USADO PARA BOTÕES, ETIQUETAS E INSTRUÇÕES CURTAS. */
     labelLarge: TextStyle().copyWith(
       fontSize: 12.0,
       fontWeight: FontWeight.w500,
-      color: Colors.white,
+      color: Colors.black,
     ),
     labelMedium: TextStyle().copyWith(
       fontSize: 12.0,
       fontWeight: FontWeight.w400,
-      color: Colors.white,
+      color: Colors.black,
     ),
   );
 
   static TextTheme darkTheme = TextTheme(
-    
+
     /*---- HEADLINE: TITULOS GRANDES TOPO DE TELA ----*/
     headlineLarge: TextStyle().copyWith(
       fontSize: 32.0,
