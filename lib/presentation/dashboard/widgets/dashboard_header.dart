@@ -17,9 +17,11 @@ class DashboardHeader extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDark
-            ? KSuccessClinicColors.primary
-            : KSuccessClinicColors.accent,
+        color:
+            Theme.of(context).appBarTheme.backgroundColor ??
+            (isDark
+                ? KSuccessClinicColors.primary
+                : KSuccessClinicColors.accent),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(24),
           bottomRight: Radius.circular(24),
@@ -42,23 +44,13 @@ class DashboardHeader extends StatelessWidget {
               children: const [
                 Text(
                   'Eliakim França',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 4),
-                Text('32  •  M', style: TextStyle(color: Colors.white)),
+                Text('32  •  M'),
                 SizedBox(height: 4),
-                Text(
-                  'Clínica de Sucesso',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-                Text(
-                  'Saúde e Bem-estar',
-                  style: TextStyle(fontSize: 14, color: Colors.white),
-                ),
+                Text('Clínica de Sucesso'),
+                Text('Saúde e Bem-estar'),
               ],
             ),
           ),

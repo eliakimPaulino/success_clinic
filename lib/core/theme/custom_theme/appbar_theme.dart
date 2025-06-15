@@ -12,11 +12,11 @@ class KAppBarTheme{
     elevation: 0, // Sem sombra
     centerTitle: false, // Título não centralizado
     scrolledUnderElevation: 0, // Sem sombra ao rolar
-    backgroundColor: Colors.transparent, // Cor de fundo transparente
+    backgroundColor: KSuccessClinicColors.accent, // Cor de fundo transparente
     surfaceTintColor: Colors.transparent, // Sem cor de superfície
     iconTheme: IconThemeData(color: KSuccessClinicColors.black, size: KSizes.iconMd), // Cor e tamanho dos ícones
     actionsIconTheme: IconThemeData(color: KSuccessClinicColors.black, size: KSizes.iconMd), // Cor e tamanho dos ícones de ação
-    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KSuccessClinicColors.accent), // Estilo do texto do título
+    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KSuccessClinicColors.white), // Estilo do texto do título
   );
 
   /// Tema para AppBar Escuro
@@ -26,10 +26,10 @@ class KAppBarTheme{
     elevation: 0, // Sem sombra
     centerTitle: false, // Título não centralizado
     scrolledUnderElevation: 0, // Sem sombra ao rolar
-    backgroundColor: Colors.transparent, // Cor de fundo transparente
+    backgroundColor: KSuccessClinicColors.primary, // Cor de fundo transparente
     surfaceTintColor: Colors.transparent, // Sem cor de superfície
     iconTheme: IconThemeData(color: KSuccessClinicColors.white, size: KSizes.iconMd), // Cor e tamanho dos ícones
     actionsIconTheme: IconThemeData(color: KSuccessClinicColors.white, size: KSizes.iconMd), // Cor e tamanho dos ícones de ação
-    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KSuccessClinicColors.primary), // Estilo do texto do título
+    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: KSuccessClinicColors.white), // Estilo do texto do título
   );
 }

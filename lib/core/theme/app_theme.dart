@@ -32,7 +32,7 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: KSuccessClinicColors.accent,
-        foregroundColor: KSuccessClinicColors.light,
+        foregroundColor: KSuccessClinicColors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       ),
     ),
@@ -40,21 +40,33 @@ class AppTheme {
     inputDecorationTheme: KTextFormFieldTheme.lightInputDecorationTheme,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: KSuccessClinicColors.accent,
-      foregroundColor: KSuccessClinicColors.light,
+      foregroundColor: KSuccessClinicColors.black,
       elevation: 4,
       shape: CircleBorder(),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: KSuccessClinicColors.accent, // Cor do texto do botão
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600), // Estilo do texto
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ), // Estilo do texto
       ),
     ),
     textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: KSuccessClinicColors.accent,
-    selectionColor: KSuccessClinicColors.accent,
-    selectionHandleColor: KSuccessClinicColors.primary,
-  ),
+      cursorColor: KSuccessClinicColors.accent,
+      selectionColor: KSuccessClinicColors.accent,
+      selectionHandleColor: KSuccessClinicColors.primary,
+    ),
+    listTileTheme: const ListTileThemeData(
+      iconColor: KSuccessClinicColors.black, // Cor dos ícones
+      textColor: KSuccessClinicColors.black, // Cor do texto
+      tileColor: Colors.white, // Cor de fundo do tile
+      selectedColor:
+          KSuccessClinicColors.accent, // Cor do texto/ícone quando selecionado
+      selectedTileColor:
+          KSuccessClinicColors.accent, // Cor de fundo quando selecionado
+    ),
   );
 
   /*----------------- TEMA ESCURO -----------------*/
@@ -71,7 +83,7 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: KSuccessClinicColors.primary,
-        foregroundColor: KSuccessClinicColors.black,
+        foregroundColor: KSuccessClinicColors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       ),
     ),
@@ -79,20 +91,30 @@ class AppTheme {
     inputDecorationTheme: KTextFormFieldTheme.darkInputDecorationTheme,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: KSuccessClinicColors.primary,
-      foregroundColor: KSuccessClinicColors.black,
+      foregroundColor: KSuccessClinicColors.white,
       elevation: 4,
       shape: CircleBorder(),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: KSuccessClinicColors.primary, // Cor do texto do botão
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600), // Estilo do texto
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ), // Estilo do texto
       ),
     ),
     textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: KSuccessClinicColors.primary,
-    selectionColor: KSuccessClinicColors.primary,
-    selectionHandleColor: KSuccessClinicColors.primary,
-  ),
+      cursorColor: KSuccessClinicColors.primary,
+      selectionColor: KSuccessClinicColors.primary,
+      selectionHandleColor: KSuccessClinicColors.primary,
+    ),
+    listTileTheme: const ListTileThemeData(
+      iconColor: KSuccessClinicColors.white,
+      textColor: KSuccessClinicColors.white,
+      tileColor: Colors.black,
+      selectedColor: KSuccessClinicColors.primary,
+      selectedTileColor: KSuccessClinicColors.primary,
+    ),
   );
 }

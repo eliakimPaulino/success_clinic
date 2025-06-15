@@ -6,6 +6,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../models/medicamento.dart';
 import '../../../core/theme/theme_provider.dart';
+import '../../core/constants/sizes.dart';
+import '../../core/constants/success_clinic_colors.dart';
 import '../controllers/auth_controller.dart';
 import 'widgets/dashboard_header.dart';
 import 'widgets/medication_list.dart';
@@ -43,8 +45,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     final mediaQuery = MediaQuery.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
@@ -59,35 +62,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
           future: _authController.getNameUseCase(),
           builder: (context, snap) {
             final name = snap.data;
-            final title = (name == null) ? 'Bem vindo!' : 'Bem vindo, $name!';
-            return Text(
-              title,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            );
+            final title = (name == null) ? 'Bem-vindo!' : 'Bem-vindo $name!';
+            return Text(title, style: Theme.of(context).appBarTheme.titleTextStyle);
           },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              themeProvider.isDarkMode
-                  ? Icons.wb_sunny
-                  : Icons.nightlight_round,
-            ),
-            onPressed: () =>
-                themeProvider.toggleTheme(!themeProvider.isDarkMode),
-          ),
-        ],
+        actions: [IconButton(icon: Icon(Icons.person_2), onPressed: () {})],
       ),
       drawer: Drawer(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                'Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24),
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color:
+                    Theme.of(context).appBarTheme.backgroundColor ??
+                    (isDark
+                        ? KSuccessClinicColors.primary
+                        : KSuccessClinicColors.accent),
               ),
+              child: Text('Menu'),
             ),
             ListTile(
               leading: const Icon(Icons.local_hospital),
