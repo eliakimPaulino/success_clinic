@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../models/medicamento.dart';
-import '../../../core/theme/theme_provider.dart';
-import '../../core/constants/sizes.dart';
 import '../../core/constants/success_clinic_colors.dart';
 import '../controllers/auth_controller.dart';
 import 'widgets/dashboard_header.dart';
