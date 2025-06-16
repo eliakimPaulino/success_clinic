@@ -2,7 +2,15 @@
 /* -- App Image Strings -- */
 
 /// This class contains all the App Images in String formats.
-class TImages {
+class KImages {
+
+  // -- Doctors Images
+  static const String drWillianRangel = "assets/images/doctors_images/dr_willian_rangel.png";
+  static const String pedroCandelario = "assets/images/doctors_images/pedro_candelario.png";
+  static const String rafaelCardoso = "assets/images/doctors_images/rafael_cardoso.png";
+  static const String yandraGuerra = "assets/images/doctors_images/yandra_guera.png";
+  static const String elianaMonoel = "assets/images/doctors_images/eliane_manoel.png";
+
 
   // -- App Logos
   static const String darkAppLogo = "assets/logos/t-store-splash-logo-black.png";

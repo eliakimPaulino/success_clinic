@@ -6,7 +6,7 @@ class TTexts {
   static const String skip = "Pular";
   static const String done = "Concluído";
   static const String submit = "Enviar";
-  static const String appName = "T-Store";
+  static const String appName = "K App Name";
   static const String tContinue = "Continuar";
 
 
@@ -61,8 +61,8 @@ class TTexts {
   static const String popularProducts = "Produtos populares";
 
   // -- Home
-  static const String homeAppbarTitle = "Bom dia para compras";
-  static const String homeAppbarSubTitle = "Taimoor Sikander";
+  static const String homeAppbarTitle = "Home App Bar Title";
+  static const String homeAppbarSubTitle = "Home App Bar Sub Title";
 
 
 }

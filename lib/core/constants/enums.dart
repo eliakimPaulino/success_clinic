@@ -1,11 +1,9 @@
-
 /* --
-      LIST OF Enums
-      They cannot be created inside a class.
+      LISTA DE Enums
+      Eles não podem ser criados dentro de uma classe.
 -- */
 
-
-/// Switch of Custom Brand-Text-Size Widget
+/// Alternância do Widget Custom Brand-Text-Size
 enum TextSizes { small, medium, large }
 
 enum OrderStatus { processing, shipped, delivered }
