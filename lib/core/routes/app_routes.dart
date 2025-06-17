@@ -2,6 +2,7 @@ import 'package:success_clinic/core/di/injection.dart';
 import 'package:success_clinic/presentation/dashboard/dashboard_screen.dart';
 import 'package:success_clinic/presentation/doctors/doctors_screen.dart';
 import 'package:success_clinic/models/medication_info_model.dart';
+import 'package:success_clinic/presentation/forgot_password/forgot_password_screen.dart';
 import 'package:success_clinic/presentation/medication_info/medication_info_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,8 @@ class KAppRoutes {
         return MaterialPageRoute(builder: (_) => RegisterScreen(authController: injectAuthController(),));
       case '/dashboard':
         return MaterialPageRoute(builder: (_) => DashboardScreen());
+       case '/forgot-password':
+       return MaterialPageRoute(builder: (_) => KForgotPasswordScreen());
       case '/add-medication':
         return MaterialPageRoute(builder: (_) => MedicationFormScreen());
       case '/doctors':

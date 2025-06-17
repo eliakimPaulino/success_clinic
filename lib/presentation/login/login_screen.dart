@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text("Entrar"),
                       ),
                 TextButton(
-                  onPressed: () => Navigator.pushNamed(context, '/forget-password'),
+                  onPressed: () => Navigator.pushNamed(context, '/forgot-password'),
                   child: const Text(KTexts.forgetPassword),
                 ),
               ],
