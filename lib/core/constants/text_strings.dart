@@ -1,8 +1,8 @@
 /// Esta classe contém todos os textos do aplicativo em formato String.
-class TTexts {
+class KTexts {
 
   // -- Textos GLOBAIS
-  static const String and = "and";
+  static const String and = "e";
   static const String skip = "Pular";
   static const String done = "Concluído";
   static const String submit = "Enviar";
@@ -43,8 +43,8 @@ class TTexts {
 
 
   // -- Títulos de Autenticação
-  static const String loginTitle = "Bem-vindo de volta,";
-  static const String loginSubTitle = "Descubra escolhas ilimitadas e conveniência incomparável.";
+  static const String loginTitle = "Bem-vindo à sua clinica On-line!";
+  static const String loginSubTitle = "Entre na sua conta para acessar todos os recursos.";
   static const String signupTitle = "Vamos criar sua conta";
   static const String forgetPasswordTitle = "Esqueceu a senha";
   static const String forgetPasswordSubTitle = "Não se preocupe, às vezes as pessoas esquecem mesmo. Digite seu e-mail e enviaremos um link para redefinir sua senha.";

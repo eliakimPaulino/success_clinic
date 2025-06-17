@@ -1,8 +1,12 @@
 //ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:success_clinic/core/constants/text_strings.dart';
+import 'package:success_clinic/core/style/spacing_styles.dart';
 import 'package:success_clinic/presentation/controllers/auth_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'widgets/login_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   final AuthController authController;
@@ -49,7 +53,6 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
   }
-  /*----------- FIM PROCESSO DE LOGIN -----------*/
 
   /*----- LIBERA RECURSOS DOS CONTROLADORES -----*/
   @override
@@ -58,39 +61,41 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.dispose();
     super.dispose();
   }
-  /*------ FIM LIBERA RECURSO CONTROLADORES ------*/
 
   /*------- CONSTRUCAO INTERFACE DE LOGIN -------*/
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text("Login"))),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: KSpacingStyle.paddingWithAppBarHeight,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 24.0,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            /*--------- INPUT PARA NOME DE USUARIO ---------*/
-            TextField(
-              controller: _userEmailController,
-              decoration: const InputDecoration(labelText: 'Usuário'),
-            ),
-        
-            /*-------- INPUT PARA SENHA DE USUARIO --------*/
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(labelText: 'Senha'),
-            ),
-        
+            // -- IMAGEM DE LOGO E TITULO 
+            KLoginHeader(),
+
+            // -- FORMULARIO DE LOGIN
+            KLoginForm(userEmailController: _userEmailController, passwordController: _passwordController),
+
             /*--------- BOTAO DE LOGIN E CADASTRO ---------*/
-            _isLoading
-                ? const CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: _login,
-                    child: const Text("Entrar"),
-                  ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _isLoading
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: _login,
+                        child: const Text("Entrar"),
+                      ),
+                TextButton(
+                  onPressed: () => Navigator.pushNamed(context, '/forget-password'),
+                  child: const Text(KTexts.forgetPassword),
+                ),
+              ],
+            ),
             TextButton(
               onPressed: () => Navigator.pushNamed(context, '/register'),
               child: const Text("Não tem uma conta? Cadastre-se"),
@@ -101,3 +106,5 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+

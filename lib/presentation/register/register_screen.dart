@@ -2,7 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:success_clinic/core/constants/sizes.dart';
+import 'package:success_clinic/core/constants/text_strings.dart';
+import 'package:success_clinic/core/utils/helpers/helper_functions.dart';
+import 'package:success_clinic/core/utils/validators/validation.dart';
 
+import '../../core/constants/colors.dart';
+import '../../core/constants/success_clinic_colors.dart';
 import '../../domain/entities/user.dart';
 import '../controllers/auth_controller.dart';
 
@@ -34,17 +40,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       final success = await widget.authController.register(user);
 
       if (success) {
-      /*
+        /*
           Hive: Armazena todos os usuários.
           SharedPreferences: Armazena apenas o email do usuário atualmente logado.
       */
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('loggedInEmail', user.email);
-      
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('loggedInEmail', user.email);
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Cadastro realizado com sucesso!")),
         );
-        print('Registrando usuário: ${user.name}, email: ${user.email} senha: ${user.password}');
+        print(
+          'Registrando usuário: ${user.name}, email: ${user.email} senha: ${user.password}',
+        );
         Navigator.pushReplacementNamed(context, '/');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -60,39 +68,100 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dark = KHelperFunctions.isDarkMode(context);
     return Scaffold(
-      appBar: AppBar(title: Text('Cadastro')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
+      appBar: AppBar(title: Text('Cadastro'), backgroundColor: Colors.transparent),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(KSizes.defaultSpace),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: KSizes.defaultSpace,
             children: [
-              TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'Nome completo'),
-                validator: (value) =>
-                    value!.isEmpty ? 'Campo obrigatório' : null,
+              Text(
+                KTexts.signupTitle,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'E-mail'),
-                validator: (value) =>
-                    value!.isEmpty ? 'Campo obrigatório' : null,
+              const SizedBox(height: KSizes.spaceBtwSections),
+              Form(
+                key: _formKey,
+                child: Column(
+                  spacing: KSizes.spaceBtwInputFields,
+                  children: [
+                    TextFormField(
+                      controller: _nameController,
+                      expands: false,
+                      decoration: InputDecoration(
+                        labelText: KTexts.firstName,
+                        prefixIcon: Icon(Icons.person),
+                      ),
+                      validator: (value) =>
+                          value!.isEmpty ? 'Campo obrigatório' : null,
+                    ),
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        labelText: KTexts.email,
+                        prefixIcon: Icon(Icons.email),
+                      ),
+                      validator: (value) => KValidator.validateEmail(value),
+                    ),
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        labelText: KTexts.phoneNo,
+                        prefixIcon: Icon(Icons.phone),
+                      ),
+                      validator: (value) => KValidator.validatePhoneNumber(value),
+                    ),
+                    TextFormField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: KTexts.password,
+                        prefixIcon: Icon(Icons.lock),
+                      ),
+                      validator: (value) => KValidator.validatePassword(value),
+                    ),
+                    SizedBox(height: 20),
+                    CheckboxListTile(
+                      value: _acceptedTerms,
+                      onChanged: (value) =>
+                          setState(() => _acceptedTerms = value!),
+                      title: Text.rich(
+                        TextSpan(
+                          text: '${KTexts.iAgreeTo} ',
+                          children: [
+                            TextSpan(
+                              text: '${KTexts.termsOfUse} ',
+                              style: TextStyle(
+                                color: dark ? KSuccessClinicColors.primary : KSuccessClinicColors.accent,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            TextSpan(text: '${KTexts.and} '),
+                            TextSpan(
+                              text: KTexts.privacyPolicy,
+                              style: TextStyle(
+                                color: dark ? KSuccessClinicColors.primary : KSuccessClinicColors.accent,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _submit,
+                        child: Text('Cadastrar'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Senha'),
-                validator: (value) =>
-                    value!.isEmpty ? 'Campo obrigatório' : null,
-              ),
-              CheckboxListTile(
-                value: _acceptedTerms,
-                onChanged: (value) => setState(() => _acceptedTerms = value!),
-                title: Text("Aceito os termos de uso"),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(onPressed: _submit, child: Text('Cadastrar')),
             ],
           ),
         ),
